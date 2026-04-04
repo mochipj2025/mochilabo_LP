@@ -3,24 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M.O.C.H.I. LABO | セラピストの新しいカタチ</title>
   
-  <!-- SEO & OGP Meta Tags -->
-  <title>M.O.C.H.I. LABO | 15年の知見×AIで描くセラピストの未来</title>
-  <meta name="description" content="15年の臨床経験と最新AI技術を融合。作業療法士・セラピストのための新しい探求の場「M.O.C.H.I. LABO」。">
-  <meta property="og:title" content="M.O.C.H.I. LABO | Link Hub">
-  <meta property="og:description" content="15年の臨床経験と最新AI技術を融合。セラピストの新しいカタチを提案します。">
+  <meta name="description" content="15年の臨床経験とAI技術を融合した、セラピストの新しい可能性を探求するコミュニティ「M.O.C.H.I. LABO」の公式リンク集です。">
+  <meta property="og:title" content="M.O.C.H.I. LABO | セラピストの新しいカタチ">
+  <meta property="og:description" content="15年の臨床経験とAI技術を融合。あなたの探求心をサポートし、新しい可能性をともに見つけるコミュニティ。">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://mochisura-lab.com/">
+  <meta property="og:image" content="https://mochisura-lab.com/image/icon.png">
+  <meta name="twitter:card" content="summary">
   
-  <!-- Font Loading -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- React & Babel -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -29,22 +23,23 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['"Noto Sans JP"', 'sans-serif'],
+          fontSize: {
+            'hero-title': ['clamp(1.8rem, 5vw, 2.25rem)', {
+              lineHeight: '1.2',
+              letterSpacing: '-0.02em',
+            }],
+            'featured-title': ['clamp(1.5rem, 4.5vw, 1.875rem)', {
+              lineHeight: '1.2',
+              letterSpacing: '-0.01em',
+            }],
           },
           animation: {
             'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'float': 'float 6s ease-in-out infinite',
           },
           keyframes: {
             fadeInUp: {
-              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' },
             }
           }
         }
@@ -52,146 +47,120 @@
     }
   </script>
   <style>
-    /* 日本語の美しい改行制御 */
-    .text-balance {
-      text-wrap: balance;
-    }
-    
-    /* 一文字改行を防ぐための指定 */
-    .keep-all {
-      word-break: keep-all;
-      overflow-wrap: anywhere;
-    }
-
     @keyframes floatUp {
       0% { transform: translateY(0) scale(0.5); opacity: 0; }
-      20% { opacity: 0.2; }
+      20% { opacity: 0.3; }
       80% { opacity: 0.1; }
-      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+      100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
     }
     .bubble {
       position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(2px);
-      bottom: -50px;
-      pointer-events: none;
-    }
-    
-    /* グラスモーフィズムの洗練 */
-    .glass {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    
-    body {
-      background-color: #020617;
-      color: #f8fafc;
-    }
-
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #020617;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #334155;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      bottom: -100px;
     }
   </style>
 </head>
-<body class="selection:bg-cyan-500/30">
+<body class="bg-[#040814] text-slate-200 selection:bg-cyan-900/50">
 
   <div id="root"></div>
 
   <script type="text/babel">
     const { useState, useEffect } = React;
 
-    // --- Lucide-style Inline SVGs ---
-    const IconBookOpen = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;
-    const IconPenTool = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>;
-    const IconTwitter = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>;
-    const IconMessageSquare = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>;
-    const IconVideo = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>;
-    const IconMessageCircle = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>;
-    const IconUserCircle = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>;
-    const IconExternalLink = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>;
-    const IconSparkles = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>;
+    const IconBookOpen = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;
+    const IconPenTool = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>;
+    const IconTwitter = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>;
+    const IconMessageSquare = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>;
+    const IconVideo = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>;
+    const IconMessageCircle = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>;
+    const IconUserCircle = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>;
+    const IconExternalLink = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>;
+    const IconSparkles = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>;
 
     const App = () => {
       const linkCategories = [
         {
-          title: "Knowledge & Growth",
-          description: "専門的な知見やノウハウの集約",
+          title: "ストック・販売",
+          description: "専門的な知見やノウハウをまとめています",
           links: [
             {
               name: "note メンバーシップ",
-              description: "15年の臨床知見を凝縮した限定コンテンツ。",
-              icon: <IconBookOpen className="w-5 h-5 text-amber-300" />,
+              description: "15年の知見を凝縮したメンバー限定記事や特典。",
+              icon: <IconBookOpen className="w-6 h-6 text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]" />,
               url: "https://note.com/mochisuranote/membership",
-              hoverEffect: "hover:border-amber-400/30 hover:bg-amber-400/5",
+              hoverEffect: "hover:border-amber-400/50 hover:shadow-[0_0_25px_rgba(251,191,36,0.2)]",
               primary: true
             },
             {
               name: "note 無料マガジン",
-              description: "日々の活動記録と有益な情報を発信。",
-              icon: <IconPenTool className="w-5 h-5 text-cyan-300" />,
+              description: "日々の活動記録や有益な情報を無料で公開。",
+              icon: <IconPenTool className="w-6 h-6 text-cyan-300 drop-shadow-[0_0_8px_rgba(103,232,249,0.5)]" />,
               url: "https://note.com/mochisuranote/m/mbe592f8bb789",
-              hoverEffect: "hover:border-cyan-400/30 hover:bg-cyan-400/5"
+              hoverEffect: "hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(103,232,249,0.2)]"
             }
           ]
         },
         {
-          title: "Daily Updates",
-          description: "最新情報や日常のリアルな発信",
+          title: "フロー・拡散",
+          description: "最新情報や日常の発信はこちら",
           links: [
             {
               name: "X (旧Twitter)",
-              description: "AI活用と日々の気づきを最速ポスト",
-              icon: <IconTwitter className="w-5 h-5 text-sky-400" />,
+              description: "AI活用や日々の気づきをポスト",
+              icon: <IconTwitter className="w-6 h-6 text-sky-300 drop-shadow-[0_0_8px_rgba(125,211,252,0.5)]" />,
               url: "https://x.com/mochilabo2026",
-              hoverEffect: "hover:border-sky-400/30 hover:bg-sky-400/5"
+              hoverEffect: "hover:border-sky-400/50 hover:shadow-[0_0_25px_rgba(125,211,252,0.2)]"
             },
             {
               name: "Threads",
-              description: "思考の深掘りとカジュアルな交流",
-              icon: <IconMessageSquare className="w-5 h-5 text-slate-300" />,
+              description: "テキストメインのカジュアルな発信",
+              icon: <IconMessageSquare className="w-6 h-6 text-slate-300 drop-shadow-[0_0_8px_rgba(203,213,225,0.5)]" />,
               url: "https://www.threads.com/@hogushiya_kida",
-              hoverEffect: "hover:border-slate-400/30 hover:bg-slate-400/5"
+              hoverEffect: "hover:border-slate-400/50 hover:shadow-[0_0_25px_rgba(203,213,225,0.2)]"
             },
             {
               name: "TikTok",
-              description: "ショート動画で分かりやすく解説",
-              icon: <IconVideo className="w-5 h-5 text-pink-400" />,
-              url: "https://www.tiktok.com/@mochisura_sounds",
-              hoverEffect: "hover:border-pink-400/30 hover:bg-pink-400/5"
+              description: "ショート動画でサクッと解説",
+              icon: <IconVideo className="w-6 h-6 text-pink-300 drop-shadow-[0_0_8px_rgba(249,168,212,0.5)]" />,
+              url: "https://www.tiktok.com/@mochisura_sounds?is_from_webapp=1&sender_device=pc",
+              hoverEffect: "hover:border-pink-400/50 hover:shadow-[0_0_25px_rgba(249,168,212,0.2)]"
             }
           ]
         },
         {
-          title: "Community",
-          description: "より深く、直接つながる場所",
+          title: "クローズド・交流",
+          description: "より深く繋がり、交流する場所",
           links: [
             {
               name: "公式LINE",
-              description: "最新情報・個別相談はこちらから",
-              icon: <IconMessageCircle className="w-5 h-5 text-emerald-400" />,
+              description: "最新情報のお届けや個別相談",
+              icon: <IconMessageCircle className="w-6 h-6 text-emerald-300 drop-shadow-[0_0_8px_rgba(110,231,183,0.5)]" />,
               url: "https://line-crm-worker.mochi-labo.workers.dev/auth/line?ref=note_free_03",
-              hoverEffect: "hover:border-emerald-400/30 hover:bg-emerald-400/5",
+              hoverEffect: "hover:border-emerald-400/50 hover:shadow-[0_0_25px_rgba(110,231,183,0.2)]",
               primary: true
             },
             {
               name: "オープンチャット",
-              description: "有志による活発な情報交換コミュニティ",
-              icon: <IconMessageSquare className="w-5 h-5 text-indigo-400" />,
+              description: "みんなでワイワイ情報交換",
+              icon: <IconMessageSquare className="w-6 h-6 text-indigo-300 drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]" />,
               url: "https://line.me/ti/g2/ben2gZ_3YzH_DeYgmSyyD1ip98e5Oju9ogHtRA",
-              hoverEffect: "hover:border-indigo-400/30 hover:bg-indigo-400/5"
+              hoverEffect: "hover:border-indigo-400/50 hover:shadow-[0_0_25px_rgba(165,180,252,0.2)]"
+            }
+          ]
+        },
+        {
+          title: "ポートフォリオ",
+          description: "これまでの活動実績とプロフィール",
+          links: [
+            {
+              name: "個人利用・実績",
+              description: "15年のキャリアとこれまでの成果物",
+              icon: <IconUserCircle className="w-6 h-6 text-fuchsia-300 drop-shadow-[0_0_8px_rgba(240,171,252,0.5)]" />,
+              url: "#",
+              hoverEffect: "hover:border-fuchsia-400/50 hover:shadow-[0_0_25px_rgba(240,171,252,0.2)]"
             }
           ]
         }
@@ -199,174 +168,200 @@
 
       const Bubbles = () => {
         const [bubbles, setBubbles] = useState([]);
+        
         useEffect(() => {
-          setBubbles([...Array(15)].map((_, i) => ({
+          const newBubbles = [...Array(20)].map((_, i) => ({
             id: i,
-            size: Math.random() * 30 + 8,
+            size: Math.random() * 40 + 10,
             left: Math.random() * 100,
-            duration: Math.random() * 12 + 8,
+            duration: Math.random() * 15 + 10,
             delay: Math.random() * 10
-          })));
+          }));
+          setBubbles(newBubbles);
         }, []);
+
         return (
           <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-            {bubbles.map(b => (
-              <div key={b.id} className="bubble" style={{
-                width: `${b.size}px`, height: `${b.size}px`, left: `${b.left}%`,
-                animation: `floatUp ${b.duration}s ${b.delay}s infinite linear`,
-              }} />
+            {bubbles.map(bubble => (
+              <div
+                key={bubble.id}
+                className="bubble"
+                style={{
+                  width: `${bubble.size}px`,
+                  height: `${bubble.size}px`,
+                  left: `${bubble.left}%`,
+                  animation: `floatUp ${bubble.duration}s ${bubble.delay}s infinite linear`,
+                }}
+              />
             ))}
           </div>
         );
       };
 
       return (
-        <div className="min-h-screen relative font-sans text-slate-200 antialiased overflow-x-hidden">
+        <div className="min-h-screen bg-gradient-to-b from-[#040814] via-[#09152b] to-[#040814] font-sans relative overflow-hidden">
           
-          {/* Background Layer */}
-          <div className="fixed inset-0 bg-gradient-to-b from-[#020617] via-[#0f172a] to-[#020617] -z-10" />
-          <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(14,165,233,0.15),transparent_70%)] -z-10" />
           <Bubbles />
           
           {/* Header */}
-          <header className="sticky top-0 z-50 glass border-b border-white/5">
-            <div className="max-w-3xl mx-auto px-6 h-16 flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <img 
-                  src="image/logo.png" 
-                  alt="M.O.C.H.I. LABO" 
-                  className="h-8 w-auto filter drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]"
-                  onError={(e) => {
-                    e.target.onerror = null; 
-                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3C/svg%3E";
-                  }}
-                />
-              </div>
-              <div className="flex gap-6 text-xs font-bold tracking-widest text-cyan-400/80">
-                <a href="#about" className="hover:text-cyan-300 transition-colors uppercase">About</a>
-                <a href="#links" className="hover:text-cyan-300 transition-colors uppercase">Links</a>
-              </div>
-            </div>
-          </header>
-
-          <main className="max-w-3xl mx-auto px-6 pt-16 pb-24 relative z-10">
-            
-            {/* Hero Section */}
-            <section id="about" className="mb-24 flex flex-col items-center md:items-start md:flex-row gap-10">
-              <div className="relative group flex-shrink-0">
-                {/* 背景のグローエフェクトのみ残し、シルエットを際立たせる */}
-                <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-[60px] opacity-60 group-hover:opacity-100 transition duration-700 animate-pulse-slow" />
-                <div className="relative w-44 h-44 md:w-56 md:h-56 flex items-center justify-center animate-float">
+          <header className="bg-[#040814]/40 backdrop-blur-xl sticky top-0 z-20 border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+            <div className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center relative z-10">
+              <div className="flex items-center gap-2">
+                <div className="bg-white/10 p-1 rounded-lg backdrop-blur-sm">
                   <img 
-                    src="image/icon.png" 
-                    alt="Mochi-labo Character" 
-                    className="w-full h-full object-contain transform group-hover:scale-110 transition duration-700 drop-shadow-[0_10px_30px_rgba(14,165,233,0.3)]"
+                    src="image/logo.png" 
+                    alt="M.O.C.H.I. LABO Logo" 
+                    className="h-10 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                     onError={(e) => {
                       e.target.onerror = null; 
-                      e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23334155' stroke-width='1'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3C/svg%3E";
+                      e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.8)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5z'/%3E%3Cpath d='M2 17l10 5 10-5'/%3E%3Cpath d='M2 12l10 5 10-5'/%3E%3C/svg%3E";
                     }}
                   />
                 </div>
               </div>
+              <nav className="hidden sm:flex gap-4 text-sm font-medium text-cyan-100/70">
+                <a href="#about" className="hover:text-cyan-300 hover:drop-shadow-[0_0_5px_rgba(103,232,249,0.5)] transition-all">About</a>
+                <a href="#links" className="hover:text-cyan-300 hover:drop-shadow-[0_0_5px_rgba(103,232,249,0.5)] transition-all">Links</a>
+              </nav>
+            </div>
+          </header>
+
+          <main className="max-w-4xl mx-auto px-4 py-12 relative z-10">
+            
+            {/* Hero Section */}
+            <section id="about" className="flex flex-col md:flex-row items-center gap-8 mb-16 md:mb-20 relative">
+              <div className="w-40 h-40 md:w-64 md:h-64 flex-shrink-0 relative">
+                {/* キャラクター画像と深海の発光エフェクト */}
+                <div className="absolute inset-0 bg-cyan-500/30 rounded-full blur-[60px] opacity-70 animate-pulse mix-blend-screen"></div>
+                <div className="absolute inset-4 bg-blue-500/20 rounded-full blur-[40px] opacity-50 animate-ping" style={{ animationDuration: '3s' }}></div>
+                <img 
+                  src="image/icon.png" 
+                  alt="Character" 
+                  className="relative w-full h-full object-contain drop-shadow-[0_0_25px_rgba(0,255,255,0.4)] hover:-translate-y-2 transition-transform duration-500"
+                  onError={(e) => {
+                    e.target.onerror = null; 
+                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 24 24' fill='none' stroke='rgba(103,232,249,0.8)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M8 14s1.5 2 4 2 4-2 4-2'/%3E%3Cline x1='9' y1='9' x2='9.01' y2='9'/%3E%3Cline x1='15' y1='9' x2='15.01' y2='9'/%3E%3C/svg%3E";
+                  }}
+                />
+              </div>
               
-              <div className="flex-grow text-center md:text-left pt-2">
-                <h1 className="text-2xl md:text-3xl font-bold leading-tight tracking-tight mb-4 text-white text-balance">
-                  15年の知見とAIで描く、<br className="hidden md:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400">
-                    セラピストの新しいカタチ。
+              <div className="text-center md:text-left z-10 flex-grow">
+                <h1 className="text-hero-title font-bold mb-4 tracking-tight text-white drop-shadow-md">
+                  <span className="inline-block">15年の</span><span className="inline-block">キャリアと</span><span className="inline-block">AIで</span><span className="inline-block">描く、</span><br className="hidden md:block"/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400 drop-shadow-[0_0_15px_rgba(103,232,249,0.3)]">
+                    <span className="inline-block">セラピストの</span><span className="inline-block">新しいカタチ。</span>
                   </span>
                 </h1>
-                <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl keep-all">
-                  精神科作業療法士としての15年の臨床経験と、最新のAI技術を融合。確かなエビデンスとテクノロジーの力で、あなたの専門性とキャリアを深化させるコミュニティ「M.O.C.H.I. LABO」を運営しています。
+                <p className="text-cyan-50/80 leading-relaxed mb-6 font-light text-sm md:text-base px-2 md:px-0">
+                  15年間の臨床経験（作業療法士・精神科）に基づいた確かな知見と、最新のAI技術を融合。あなたの探求心をサポートし、新しい可能性をともに見つけるコミュニティ「M.O.C.H.I. LABO」を運営しています。
                 </p>
               </div>
             </section>
 
-            {/* Recommended Feature Card */}
-            <section className="mb-24 animate-fade-in-up">
-              <a 
-                href="https://note.com/mochisuranote/n/ndf30cddac7c8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block overflow-hidden rounded-3xl p-[1px] bg-gradient-to-br from-cyan-500/50 via-blue-500/50 to-purple-600/50 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-500 shadow-xl"
-              >
-                <div className="relative bg-[#020617]/90 rounded-[23px] p-6 md:p-10 flex flex-col md:flex-row items-center gap-8 overflow-hidden">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-[80px] -mr-32 -mt-32 group-hover:bg-cyan-500/20 transition duration-500" />
+            {/* Featured Section (メイン商材 特別カード) */}
+            <section className="mb-16 md:mb-20 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+              <div className="relative group rounded-3xl p-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-500 shadow-[0_0_30px_rgba(14,165,233,0.3)] hover:shadow-[0_0_50px_rgba(14,165,233,0.5)] transform hover:-translate-y-1">
+                {/* 後ろで光るオーラ */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-3xl blur-md opacity-50 group-hover:opacity-80 transition duration-500"></div>
+                
+                <a 
+                  href="https://note.com/mochisuranote/n/ndf30cddac7c8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative flex flex-col md:flex-row items-center bg-[#061022]/95 backdrop-blur-xl rounded-[22px] p-6 md:p-8 gap-6 overflow-hidden"
+                >
+                  {/* カード内のハイライト */}
+                  <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-cyan-500/20 rounded-full blur-3xl group-hover:bg-cyan-400/30 transition-colors duration-500"></div>
                   
-                  <div className="flex-shrink-0 relative">
-                    <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-amber-300/20 to-orange-500/20 rounded-2xl flex items-center justify-center border border-amber-400/30 group-hover:scale-110 transition duration-500">
-                      <IconSparkles className="w-8 h-8 md:w-10 md:h-10 text-amber-300 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]" />
+                  {/* アイコン部分 */}
+                  <div className="flex-shrink-0 relative z-10">
+                    <div className="absolute inset-0 bg-amber-400/30 blur-xl rounded-full animate-pulse"></div>
+                    <div className="bg-gradient-to-br from-amber-300 to-orange-500 p-4 rounded-2xl shadow-lg relative border border-white/30">
+                      <IconSparkles className="w-10 h-10 text-white drop-shadow-md" />
                     </div>
                   </div>
-
-                  <div className="flex-grow text-center md:text-left z-10">
-                    <span className="inline-block px-3 py-1 mb-4 text-[10px] font-bold tracking-[0.2em] text-amber-300 border border-amber-300/30 rounded-full uppercase">
-                      Recommended Dive
-                    </span>
-                    <h2 className="text-xl md:text-2xl font-bold text-white mb-3 text-balance leading-snug group-hover:text-cyan-200 transition-colors">
-                      【プレミアム教科書】<br className="sm:hidden" />売れてるセラピストの共通点
-                    </h2>
-                    <p className="text-slate-400 text-sm mb-4 leading-relaxed keep-all">
-                      知識マウントに負けない10のマインドセット。明日から使える具体的な行動指針を完全網羅。
+                  
+                  {/* テキスト部分 */}
+                  <div className="flex-grow text-center md:text-left z-10 flex flex-col md:block items-center md:items-start">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold tracking-wider mb-3 w-fit">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                      </span>
+                      RECOMMENDED
+                    </div>
+                    <h3 className="text-featured-title font-bold text-white mb-2 tracking-tight group-hover:text-cyan-100 transition-colors leading-tight px-1 md:px-0">
+                      <span className="inline-block">【プレミアム教科書】</span><span className="inline-block">売れてる</span><span className="inline-block">セラピストの共通点</span>
+                    </h3>
+                    <p className="text-cyan-100/70 text-sm md:text-base font-light mb-3 leading-relaxed px-2 md:px-0">
+                      知識マウントに負けない10のマインドセットと、明日から使える5つの行動指針。
                     </p>
-                    <div className="flex items-center justify-center md:justify-start gap-2 text-amber-300/80 text-xs font-medium">
-                      <IconExternalLink className="w-3.5 h-3.5" />
-                      {/* 特典テキストを短縮して視認性を向上 */}
-                      <span>限定特典：PDF資料付き</span>
+                    <div className="inline-flex items-center gap-1.5 text-amber-300 text-xs md:text-sm font-bold bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-lg w-fit">
+                      <IconSparkles className="w-4 h-4 flex-shrink-0" />
+                      <span>限定特典：PDF資料「The Deep Dive Mindset」付</span>
                     </div>
                   </div>
-
-                  <div className="flex-shrink-0 mt-2 md:mt-0 w-full md:w-auto">
-                    <div className="px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full text-sm font-bold transition-all text-center">
+                  
+                  {/* ボタン部分 */}
+                  <div className="flex-shrink-0 z-10 mt-4 md:mt-0 w-full md:w-auto">
+                    <div className="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-4 md:py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
                       記事を読む
+                      <IconExternalLink className="w-4 h-4" />
                     </div>
                   </div>
-                </div>
-              </a>
+                </a>
+              </div>
             </section>
 
-            {/* Links Grid */}
-            <section id="links" className="space-y-16">
-              {linkCategories.map((cat, i) => (
-                <div key={i} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${i * 150}ms` }}>
-                  <div className="flex items-baseline gap-3 mb-8 border-l-2 border-cyan-500/40 pl-4">
-                    <h3 className="text-lg font-bold text-white tracking-wide uppercase">{cat.title}</h3>
-                    <span className="text-xs text-slate-500 font-medium">{cat.description}</span>
+            {/* Links Section */}
+            <section id="links" className="space-y-12">
+              {linkCategories.map((category, idx) => (
+                <div key={idx} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${idx * 150}ms` }}>
+                  <div className="mb-6 border-b border-cyan-900/50 pb-2 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-3">
+                    <h2 className="text-xl font-bold text-white tracking-wide drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">{category.title}</h2>
+                    <p className="text-sm text-cyan-200/60 font-light">{category.description}</p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {cat.links.map((link, j) => (
+                    {category.links.map((link, linkIdx) => (
                       <a 
-                        key={j}
+                        key={linkIdx}
                         href={link.url}
-                        target="_blank"
+                        target={link.url !== "#" ? "_blank" : "_self"}
                         rel="noopener noreferrer"
                         className={`
-                          group relative p-5 rounded-2xl glass transition-all duration-300
-                          flex items-center gap-4
+                          group relative flex items-center p-4 rounded-2xl transition-all duration-500
+                          bg-white/5 backdrop-blur-md border border-white/10
                           ${link.hoverEffect}
-                          ${link.primary ? 'ring-1 ring-cyan-500/20 shadow-[0_0_20px_rgba(6,182,212,0.05)]' : ''}
+                          ${link.primary ? 'shadow-[0_0_15px_rgba(255,255,255,0.05)] scale-100 hover:scale-[1.02] z-10' : 'shadow-sm'}
+                          overflow-hidden
                         `}
                       >
-                        <div className="flex-shrink-0 p-3 rounded-xl bg-slate-800/30 border border-white/5 group-hover:scale-110 transition duration-300">
+                        {link.primary && (
+                          <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%]"></div>
+                        )}
+                        
+                        <div className="flex-shrink-0 mr-4 bg-[#0a152e]/80 p-3 rounded-xl shadow-inner border border-white/5 group-hover:bg-[#112347] transition-colors">
                           {link.icon}
                         </div>
                         
-                        <div className="flex-grow min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
-                            <h4 className="font-bold text-slate-100 group-hover:text-white transition-colors truncate">
-                              {link.name}
-                            </h4>
+                        <div className="flex-grow z-10">
+                          <h3 className="font-bold text-slate-100 flex items-center gap-1 group-hover:text-white transition-colors">
+                            {link.name}
                             {link.primary && (
-                              <span className="px-1.5 py-0.5 text-[8px] font-black bg-cyan-400 text-cyan-950 rounded-sm">HOT</span>
+                              <span className="inline-flex items-center justify-center px-2 py-0.5 ml-2 text-[10px] font-bold text-cyan-900 bg-cyan-300 rounded-full animate-pulse shadow-[0_0_10px_rgba(103,232,249,0.5)]">
+                                HOT
+                              </span>
                             )}
-                          </div>
-                          <p className="text-xs text-slate-500 group-hover:text-slate-400 transition-colors truncate keep-all">
+                          </h3>
+                          <p className="text-xs text-cyan-100/60 mt-1 line-clamp-1 group-hover:text-cyan-100/80 transition-colors font-light">
                             {link.description}
                           </p>
                         </div>
 
-                        <IconExternalLink className="w-4 h-4 text-slate-600 group-hover:text-cyan-400 transition-colors" />
+                        <div className="flex-shrink-0 ml-2 text-cyan-500/40 group-hover:text-cyan-300 transition-colors z-10">
+                          <IconExternalLink className="w-5 h-5" />
+                        </div>
                       </a>
                     ))}
                   </div>
@@ -377,17 +372,10 @@
           </main>
 
           {/* Footer */}
-          <footer className="py-16 border-t border-white/5 bg-[#010409]/80 backdrop-blur-sm relative z-10">
-            <div className="max-w-3xl mx-auto px-6 text-center">
-              <div className="text-xs font-bold tracking-[0.3em] text-slate-500 uppercase mb-4">
-                M.O.C.H.I. LABO
-              </div>
-              <p className="text-[10px] text-slate-600 mb-8 uppercase tracking-widest">
-                Diving Deep into Mind & Technology
-              </p>
-              <p className="text-[10px] text-slate-700">
-                &copy; {new Date().getFullYear()} M.O.C.H.I. LABO. All Rights Reserved.
-              </p>
+          <footer className="relative z-10 border-t border-white/5 bg-[#02050f]/80 backdrop-blur-md text-cyan-500/50 py-8 text-center mt-20">
+            <div className="max-w-4xl mx-auto px-4">
+              <p className="text-sm">© {new Date().getFullYear()} M.O.C.H.I. LABO | All Rights Reserved.</p>
+              <p className="text-xs mt-2 opacity-50 font-light">Diving deep into the mind and technology.</p>
             </div>
           </footer>
         </div>
