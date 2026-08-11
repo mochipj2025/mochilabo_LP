@@ -1,404 +1,223 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>M.O.C.H.I. LABO | セラピストの新しいカタチ</title>
-  
-  <meta name="description" content="15年の臨床経験とAI技術を融合した、セラピストの新しい可能性を探求するコミュニティ「M.O.C.H.I. LABO」の公式リンク集です。">
-  <meta property="og:title" content="M.O.C.H.I. LABO | セラピストの新しいカタチ">
-  <meta property="og:description" content="15年の臨床経験とAI技術を融合。あなたの探求心をサポートし、新しい可能性をともに見つけるコミュニティ。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mochisura-lab.com/">
-  <meta property="og:image" content="https://mochisura-lab.com/image/icon.png">
-  <meta name="twitter:card" content="summary">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontSize: {
-            'hero-title': ['clamp(1.8rem, 5vw, 2.25rem)', {
-              lineHeight: '1.2',
-              letterSpacing: '-0.02em',
-            }],
-            'featured-title': ['clamp(1.5rem, 4.5vw, 1.875rem)', {
-              lineHeight: '1.2',
-              letterSpacing: '-0.01em',
-            }],
-          },
-          animation: {
-            'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-          },
-          keyframes: {
-            fadeInUp: {
-              '0%': { opacity: '0', transform: 'translateY(30px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(0.5); opacity: 0; }
-      20% { opacity: 0.3; }
-      80% { opacity: 0.1; }
-      100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
-    }
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      bottom: -100px;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>もちスラ — 星と季節のあいだで育つ、ちいさな相棒</title>
+<meta name="description" content="もちスラと遊び、育て、自分を知る。動くドット絵の庭、十二景の成長、性格・お金・相性・星読みの診断が集まる、もちスラの公式サイト。">
+<link rel="stylesheet" href="assets/site.css?v=20260810-oracle1">
+<link rel="stylesheet" href="assets/galaxy.css?v=20260810-sync1">
+<script src="assets/galaxy.js?v=20260810-sync1" defer></script>
+<script src="assets/site-motion.js?v=20260810-grow1" defer></script>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="もちスラ">
+<meta property="og:title" content="もちスラ">
+<meta property="og:description" content="生年月日ひとつで読む、五つの診断とオラクル。西洋のホロスコープと東洋の四つを、同じ計算で読み分けます。">
+<meta property="og:image" content="https://mochisura-lab.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mochisura-lab.com/">
+<link rel="canonical" href="https://mochisura-lab.com/">
 </head>
-<body class="bg-[#040814] text-slate-200 selection:bg-cyan-900/50">
+<body>
+<div class="ambient" aria-hidden="true">
+  <span class="ambient-glow glow-a"></span>
+  <span class="ambient-glow glow-b"></span>
+  <span class="ambient-orbit orbit-a"><i></i></span>
+  <span class="ambient-orbit orbit-b"><i></i></span>
+  <span class="ambient-moon"></span>
+  <span class="pointer-halo"></span>
+  <span class="stardust-field"></span>
+</div>
+<div class="wrap">
 
-  <div id="root"></div>
+  <nav class="site-nav" aria-label="メインナビゲーション">
+    <a class="brand" href="index.html" aria-label="もちスラ ホーム">
+      <span class="brand-orb" aria-hidden="true"></span>
+      <span>もちスラ</span>
+    </a>
+    <div class="nav-links">
+      <a href="#garden">庭</a>
+      <a href="#diagnosis">診断</a>
+      <a href="#oracle">カード</a>
+      <a href="#stories">星と暦</a>
+      <a href="me/index.html">マイページ</a>
+    </div>
+  </nav>
 
-  <script type="text/babel">
-    const { useState, useEffect } = React;
+  <header class="top pixel-hero" id="garden">
+    <div class="hero-copy">
+      <p class="hero-kicker">MOCHISURA</p>
+      <h1>もちスラ</h1>
+      <p class="hero-lead">星と季節のあいだで育つ、<br class="mobile-break">ちいさくて不思議な相棒。</p>
+      <p class="sub">生年月日をひとつ入れるだけ。ときどき自分のことも見つめてみる。</p>
+      <div class="hero-actions">
+        <a class="hero-action primary" href="#diagnosis">もちスラと診断する</a>
+        <a class="hero-action secondary" href="oracle/index.html">カードを一枚引く</a>
+      </div>
+    </div>
+    <div class="pixel-world" id="pixelWorld" aria-label="もちスラたちが暮らす小さな庭">
+      <button class="pixel-sun" id="timeToggle" type="button" aria-label="夜の庭に切り替える"></button>
+      <span class="pixel-night-stars" id="nightStars" aria-hidden="true"></span>
+      <span class="pixel-cloud cloud-one" aria-hidden="true"></span>
+      <span class="pixel-cloud cloud-two" aria-hidden="true"></span>
+      <span class="pixel-hill hill-one" aria-hidden="true"></span>
+      <span class="pixel-hill hill-two" aria-hidden="true"></span>
+      <span class="pixel-ground" aria-hidden="true"></span>
+      <span class="pixel-flower flower-one" aria-hidden="true"></span>
+      <span class="pixel-flower flower-two" aria-hidden="true"></span>
 
-    const IconBookOpen = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>;
-    const IconPenTool = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>;
-    const IconTwitter = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>;
-    const IconMessageSquare = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>;
-    const IconVideo = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>;
-    const IconMessageCircle = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>;
-    const IconUserCircle = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>;
-    const IconExternalLink = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>;
-    const IconSparkles = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>;
+      <a class="hero-cameo cameo-money" href="money/index.html" aria-label="お金の診断へ">
+        <img src="assets/diagnosis-characters/money-mochisura.png" alt="">
+        <span>お金</span>
+      </a>
+      <a class="hero-cameo cameo-compatibility" href="aishou/index.html" aria-label="相性を読むへ">
+        <img src="assets/diagnosis-characters/compatibility-mochisura.png" alt="">
+        <span>相性</span>
+      </a>
 
-    const App = () => {
-      const linkCategories = [
-        {
-          title: "ストック・販売",
-          description: "専門的な知見やノウハウをまとめています",
-          links: [
-            {
-              name: "note メンバーシップ",
-              description: "15年の知見を凝縮したメンバー限定記事や特典。",
-              icon: <IconBookOpen className="w-6 h-6 text-amber-300 drop-shadow-[0_0_8px_rgba(251,191,36,0.5)]" />,
-              url: "https://note.com/mochisuranote/membership",
-              hoverEffect: "hover:border-amber-400/50 hover:shadow-[0_0_25px_rgba(251,191,36,0.2)]",
-              primary: true
-            },
-            {
-              name: "note 無料マガジン",
-              description: "日々の活動記録や有益な情報を無料で公開。",
-              icon: <IconPenTool className="w-6 h-6 text-cyan-300 drop-shadow-[0_0_8px_rgba(103,232,249,0.5)]" />,
-              url: "https://note.com/mochisuranote/m/mbe592f8bb789",
-              hoverEffect: "hover:border-cyan-400/50 hover:shadow-[0_0_25px_rgba(103,232,249,0.2)]"
-            },
-            {
-              name: "もちスラ Lab",
-              description: "BNS理論の思考過程をそのまま公開する研究ノート。",
-              icon: <IconSparkles className="w-6 h-6 text-violet-300 drop-shadow-[0_0_8px_rgba(196,181,253,0.5)]" />,
-              url: "https://lab.mochisura-lab.com/lab",
-              hoverEffect: "hover:border-violet-400/50 hover:shadow-[0_0_25px_rgba(196,181,253,0.2)]"
-            }
-          ]
-        },
-        {
-          title: "フロー・拡散",
-          description: "最新情報や日常の発信はこちら",
-          links: [
-            {
-              name: "X (旧Twitter)",
-              description: "AI活用や日々の気づきをポスト",
-              icon: <IconTwitter className="w-6 h-6 text-sky-300 drop-shadow-[0_0_8px_rgba(125,211,252,0.5)]" />,
-              url: "https://x.com/mochilabo2026",
-              hoverEffect: "hover:border-sky-400/50 hover:shadow-[0_0_25px_rgba(125,211,252,0.2)]"
-            },
-            {
-              name: "Threads",
-              description: "テキストメインのカジュアルな発信",
-              icon: <IconMessageSquare className="w-6 h-6 text-slate-300 drop-shadow-[0_0_8px_rgba(203,213,225,0.5)]" />,
-              url: "https://www.threads.com/@hogushiya_kida",
-              hoverEffect: "hover:border-slate-400/50 hover:shadow-[0_0_25px_rgba(203,213,225,0.2)]"
-            },
-            {
-              name: "TikTok",
-              description: "ショート動画でサクッと解説",
-              icon: <IconVideo className="w-6 h-6 text-pink-300 drop-shadow-[0_0_8px_rgba(249,168,212,0.5)]" />,
-              url: "https://www.tiktok.com/@mochisura_sounds?is_from_webapp=1&sender_device=pc",
-              hoverEffect: "hover:border-pink-400/50 hover:shadow-[0_0_25px_rgba(249,168,212,0.2)]"
-            }
-          ]
-        },
-        {
-          title: "クローズド・交流",
-          description: "より深く繋がり、交流する場所",
-          links: [
-            {
-              name: "きだからの手紙（無料メルマガ）",
-              description: "noteには書けない臨床の本音を、直接あなたへ届けます。",
-              icon: <IconPenTool className="w-6 h-6 text-rose-300 drop-shadow-[0_0_8px_rgba(253,164,175,0.5)]" />,
-              url: "https://lab.mochisura-lab.com/newsletter",
-              hoverEffect: "hover:border-rose-400/50 hover:shadow-[0_0_25px_rgba(253,164,175,0.2)]",
-              primary: true
-            },
-            {
-              name: "公式LINE",
-              description: "最新情報のお届けや個別相談",
-              icon: <IconMessageCircle className="w-6 h-6 text-emerald-300 drop-shadow-[0_0_8px_rgba(110,231,183,0.5)]" />,
-              url: "https://line-crm-worker.mochi-labo.workers.dev/auth/line?ref=note_free_03",
-              hoverEffect: "hover:border-emerald-400/50 hover:shadow-[0_0_25px_rgba(110,231,183,0.2)]"
-            },
-            {
-              name: "オープンチャット",
-              description: "みんなでワイワイ情報交換",
-              icon: <IconMessageSquare className="w-6 h-6 text-indigo-300 drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]" />,
-              url: "https://line.me/ti/g2/ben2gZ_3YzH_DeYgmSyyD1ip98e5Oju9ogHtRA",
-              hoverEffect: "hover:border-indigo-400/50 hover:shadow-[0_0_25px_rgba(165,180,252,0.2)]"
-            }
-          ]
-        },
-        {
-          title: "ポートフォリオ",
-          description: "これまでの活動実績とプロフィール",
-          links: [
-            {
-              name: "個人利用・実績",
-              description: "15年のキャリアとこれまでの成果物",
-              icon: <IconUserCircle className="w-6 h-6 text-fuchsia-300 drop-shadow-[0_0_8px_rgba(240,171,252,0.5)]" />,
-              url: "https://lab.mochisura-lab.com",
-              hoverEffect: "hover:border-fuchsia-400/50 hover:shadow-[0_0_25px_rgba(240,171,252,0.2)]"
-            }
-          ]
-        }
-      ];
+      <button class="pet-actor" id="petActor" type="button" aria-label="歩いているもちスラPetをなでる">
+        <span class="pet-sprite" id="petSprite" aria-hidden="true"></span>
+      </button>
 
-      const Bubbles = () => {
-        const [bubbles, setBubbles] = useState([]);
-        
-        useEffect(() => {
-          const newBubbles = [...Array(20)].map((_, i) => ({
-            id: i,
-            size: Math.random() * 40 + 10,
-            left: Math.random() * 100,
-            duration: Math.random() * 15 + 10,
-            delay: Math.random() * 10
-          }));
-          setBubbles(newBubbles);
-        }, []);
+      <button class="pot-actor" id="potActor" type="button" aria-label="鉢植えもちスラを育てる">
+        <img id="potSlime" src="slime/images_pixel/me.png" alt="芽が生えた鉢植えもちスラ">
+      </button>
 
-        return (
-          <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-            {bubbles.map(bubble => (
-              <div
-                key={bubble.id}
-                className="bubble"
-                style={{
-                  width: `${bubble.size}px`,
-                  height: `${bubble.size}px`,
-                  left: `${bubble.left}%`,
-                  animation: `floatUp ${bubble.duration}s ${bubble.delay}s infinite linear`,
-                }}
-              />
-            ))}
-          </div>
-        );
-      };
+      <span class="hero-message" id="heroMessage" role="status" aria-live="polite">庭をタップすると、もちスラが来るよ</span>
+    </div>
+  </header>
 
-      return (
-        <div className="min-h-screen bg-gradient-to-b from-[#040814] via-[#09152b] to-[#040814] font-sans relative overflow-hidden">
-          
-          <Bubbles />
-          
-          {/* Header */}
-          <header className="bg-[#040814]/40 backdrop-blur-xl sticky top-0 z-20 border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
-            <div className="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center relative z-10">
-              <div className="flex items-center gap-2">
-                <div className="bg-white/10 p-1 rounded-lg backdrop-blur-sm">
-                  <img 
-                    src="image/logo.png" 
-                    alt="M.O.C.H.I. LABO Logo" 
-                    className="h-10 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
-                    onError={(e) => {
-                      e.target.onerror = null; 
-                      e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.8)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5z'/%3E%3Cpath d='M2 17l10 5 10-5'/%3E%3Cpath d='M2 12l10 5 10-5'/%3E%3C/svg%3E";
-                    }}
-                  />
-                </div>
-              </div>
-              <nav className="hidden sm:flex gap-4 text-sm font-medium text-cyan-100/70">
-                <a href="#about" className="hover:text-cyan-300 hover:drop-shadow-[0_0_5px_rgba(103,232,249,0.5)] transition-all">About</a>
-                <a href="#links" className="hover:text-cyan-300 hover:drop-shadow-[0_0_5px_rgba(103,232,249,0.5)] transition-all">Links</a>
-              </nav>
-            </div>
-          </header>
+  <section class="world-intro home-section" aria-labelledby="world-title">
+    <p class="section-kicker">LIVE WITH MOCHISURA</p>
+    <h2 id="world-title">もちスラと暮らしながら、<br>自分のことを少しずつ知る。</h2>
+    <p class="section-copy">もちスラは、芽を出し、花を咲かせ、風に飛ばされ、また根を張ります。その変化を眺めながら、星と暦を使って自分の輪郭も読んでいく場所です。</p>
+    <div class="world-points">
+      <div><span class="point-mark play" aria-hidden="true"></span><b>遊ぶ</b><small>庭を歩くPetに触れる</small></div>
+      <div><span class="point-mark grow" aria-hidden="true"></span><b>育てる</b><small>十二景の変化を集める</small></div>
+      <div><span class="point-mark read" aria-hidden="true"></span><b>知る</b><small>診断と星読みで自分を見る</small></div>
+    </div>
+  </section>
 
-          <main className="max-w-4xl mx-auto px-4 py-12 relative z-10">
-            
-            {/* Hero Section */}
-            <section id="about" className="flex flex-col md:flex-row items-center gap-8 mb-16 md:mb-20 relative">
-              <div className="w-40 h-40 md:w-64 md:h-64 flex-shrink-0 relative">
-                {/* キャラクター画像と深海の発光エフェクト */}
-                <div className="absolute inset-0 bg-cyan-500/30 rounded-full blur-[60px] opacity-70 animate-pulse mix-blend-screen"></div>
-                <div className="absolute inset-4 bg-blue-500/20 rounded-full blur-[40px] opacity-50 animate-ping" style={{ animationDuration: '3s' }}></div>
-                <img 
-                  src="image/icon.png" 
-                  alt="Character" 
-                  className="relative w-full h-full object-contain drop-shadow-[0_0_25px_rgba(0,255,255,0.4)] hover:-translate-y-2 transition-transform duration-500"
-                  onError={(e) => {
-                    e.target.onerror = null; 
-                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 24 24' fill='none' stroke='rgba(103,232,249,0.8)' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M8 14s1.5 2 4 2 4-2 4-2'/%3E%3Cline x1='9' y1='9' x2='9.01' y2='9'/%3E%3Cline x1='15' y1='9' x2='15.01' y2='9'/%3E%3C/svg%3E";
-                  }}
-                />
-              </div>
-              
-              <div className="text-center md:text-left z-10 flex-grow">
-                <h1 className="text-hero-title font-bold mb-4 tracking-tight text-white drop-shadow-md">
-                  <span className="inline-block">15年の</span><span className="inline-block">キャリアと</span><span className="inline-block">AIで</span><span className="inline-block">描く、</span><br className="hidden md:block"/>
-                  {/* 修正：iPhoneバグ回避のため内側のinline-blockを外し、親にまとめる */}
-                  <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400 drop-shadow-[0_0_15px_rgba(103,232,249,0.3)] pb-1">
-                    セラピストの新しいカタチ。
-                  </span>
-                </h1>
-                <p className="text-cyan-50/80 leading-relaxed mb-6 font-light text-sm md:text-base px-2 md:px-0">
-                  15年間の臨床経験（作業療法士・精神科）に基づいた確かな知見と、最新のAI技術を融合。あなたの探求心をサポートし、新しい可能性をともに見つけるコミュニティ「M.O.C.H.I. LABO」を運営しています。
-                </p>
-              </div>
-            </section>
+  <section class="home-section diagnosis-section" id="diagnosis" aria-labelledby="diagnosis-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker">DIAGNOSIS</p>
+        <h2 id="diagnosis-title">もちスラと診断する</h2>
+      </div>
+      <p>軽いものから順に並んでいます。</p>
+    </div>
 
-            {/* Featured Section (メイン商材 特別カード) */}
-            <section className="mb-16 md:mb-20 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-              <div className="relative group rounded-3xl p-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-500 shadow-[0_0_30px_rgba(14,165,233,0.3)] hover:shadow-[0_0_50px_rgba(14,165,233,0.5)] transform hover:-translate-y-1">
-                {/* 後ろで光るオーラ */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-3xl blur-md opacity-50 group-hover:opacity-80 transition duration-500"></div>
-                
-                <a 
-                  href="https://note.com/mochisuranote/n/ndf30cddac7c8"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative flex flex-col md:flex-row items-center bg-[#061022]/95 backdrop-blur-xl rounded-[22px] p-6 md:p-8 gap-6 overflow-hidden"
-                >
-                  {/* カード内のハイライト */}
-                  <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-cyan-500/20 rounded-full blur-3xl group-hover:bg-cyan-400/30 transition-colors duration-500"></div>
-                  
-                  {/* アイコン部分 */}
-                  <div className="flex-shrink-0 relative z-10">
-                    <div className="absolute inset-0 bg-amber-400/30 blur-xl rounded-full animate-pulse"></div>
-                    <div className="bg-gradient-to-br from-amber-300 to-orange-500 p-4 rounded-2xl shadow-lg relative border border-white/30">
-                      <IconSparkles className="w-10 h-10 text-white drop-shadow-md" />
-                    </div>
-                  </div>
-                  
-                  {/* テキスト部分 */}
-                  <div className="flex-grow text-center md:text-left z-10 flex flex-col md:block items-center md:items-start">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold tracking-wider mb-3 w-fit">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-                      </span>
-                      RECOMMENDED
-                    </div>
-                    <h3 className="text-featured-title font-bold text-white mb-2 tracking-tight group-hover:text-cyan-100 transition-colors leading-tight px-1 md:px-0">
-                      <span className="inline-block">【プレミアム教科書】</span><span className="inline-block">売れてる</span><span className="inline-block">セラピストの共通点</span>
-                    </h3>
-                    <p className="text-cyan-100/70 text-sm md:text-base font-light mb-3 leading-relaxed px-2 md:px-0">
-                      知識マウントに負けない10のマインドセットと、明日から使える5つの行動指針。
-                    </p>
-                    <div className="inline-flex items-center gap-1.5 text-amber-300 text-xs md:text-sm font-bold bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-lg w-fit">
-                      <IconSparkles className="w-4 h-4 flex-shrink-0" />
-                      <span>限定特典：PDF資料「The Deep Dive Mindset」付</span>
-                    </div>
-                  </div>
-                  
-                  {/* ボタン部分 */}
-                  <div className="flex-shrink-0 z-10 mt-4 md:mt-0 w-full md:w-auto">
-                    <div className="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-4 md:py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-                      記事を読む
-                      <IconExternalLink className="w-4 h-4" />
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </section>
+    <div class="lead-box">
+      <p>
+        西洋のホロスコープと、東洋の四柱推命・宿曜・九星気学・紫微斗数。
+        違うのは<b>どの問いに答えるか</b>だけです。
+      </p>
+      <p>
+        入力した内容は外へ送信せず、この画面の中だけで計算しています。
+      </p>
+    </div>
 
-            {/* Links Section */}
-            <section id="links" className="space-y-12">
-              {linkCategories.map((category, idx) => (
-                <div key={idx} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${idx * 150}ms` }}>
-                  <div className="mb-6 border-b border-cyan-900/50 pb-2 flex flex-col md:flex-row md:items-baseline gap-2 md:gap-3">
-                    <h2 className="text-xl font-bold text-white tracking-wide drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">{category.title}</h2>
-                    <p className="text-sm text-cyan-200/60 font-light">{category.description}</p>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {category.links.map((link, linkIdx) => (
-                      <a 
-                        key={linkIdx}
-                        href={link.url}
-                        target={link.url !== "#" ? "_blank" : "_self"}
-                        rel="noopener noreferrer"
-                        className={`
-                          group relative flex items-center p-4 rounded-2xl transition-all duration-500
-                          bg-white/5 backdrop-blur-md border border-white/10
-                          ${link.hoverEffect}
-                          ${link.primary ? 'shadow-[0_0_15px_rgba(255,255,255,0.05)] scale-100 hover:scale-[1.02] z-10' : 'shadow-sm'}
-                          overflow-hidden
-                        `}
-                      >
-                        {link.primary && (
-                          <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%]"></div>
-                        )}
-                        
-                        <div className="flex-shrink-0 mr-4 bg-[#0a152e]/80 p-3 rounded-xl shadow-inner border border-white/5 group-hover:bg-[#112347] transition-colors">
-                          {link.icon}
-                        </div>
-                        
-                        <div className="flex-grow z-10">
-                          <h3 className="font-bold text-slate-100 flex items-center gap-1 group-hover:text-white transition-colors">
-                            {link.name}
-                            {link.primary && (
-                              <span className="inline-flex items-center justify-center px-2 py-0.5 ml-2 text-[10px] font-bold text-cyan-900 bg-cyan-300 rounded-full animate-pulse shadow-[0_0_10px_rgba(103,232,249,0.5)]">
-                                HOT
-                              </span>
-                            )}
-                          </h3>
-                          <p className="text-xs text-cyan-100/60 mt-1 line-clamp-1 group-hover:text-cyan-100/80 transition-colors font-light">
-                            {link.description}
-                          </p>
-                        </div>
+  <a class="card" href="slime/index.html">
+    <span class="thumb"><img src="slime/images/tsubomi.png" alt=""></span>
+    <span class="body">
+      <span class="name">スライム診断</span>
+      <span class="q">あなたはどういう人か。四つに絞って言い切ります。</span>
+      <span class="need">生年月日だけ</span>
+    </span>
+  </a>
 
-                        <div className="flex-shrink-0 ml-2 text-cyan-500/40 group-hover:text-cyan-300 transition-colors z-10">
-                          <IconExternalLink className="w-5 h-5" />
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </section>
+  <a class="card" href="money/index.html">
+    <span class="thumb"><img src="assets/diagnosis-characters/money-mochisura-smooth.png" alt=""></span>
+    <span class="body">
+      <span class="name">お金の診断</span>
+      <span class="q">大事だと思っているものと、実際に払っているもののズレ。</span>
+      <span class="need">生年月日＋七つへの配点</span>
+    </span>
+  </a>
 
-          </main>
+  <a class="card" href="aishou/index.html">
+    <span class="thumb"><img src="assets/diagnosis-characters/compatibility-mochisura-smooth.png" alt=""></span>
+    <span class="body">
+      <span class="name">相性を読む</span>
+      <span class="q">相手があなたに与えるものと、あなたが相手に与えるものは違います。</span>
+      <span class="need">生年月日ふたつ</span>
+    </span>
+  </a>
 
-          {/* Footer */}
-          <footer className="relative z-10 border-t border-white/5 bg-[#02050f]/80 backdrop-blur-md text-cyan-500/50 py-8 text-center mt-20">
-            <div className="max-w-4xl mx-auto px-4">
-              <p className="text-sm">© {new Date().getFullYear()} M.O.C.H.I. LABO | All Rights Reserved.</p>
-              <p className="text-xs mt-2 opacity-50 font-light">Diving deep into the mind and technology.</p>
-            </div>
-          </footer>
+  <a class="card" href="hoshiyomi/index.html">
+    <span class="thumb"><img src="hoshiyomi/assets/zodiac/leo.png" alt=""></span>
+    <span class="body">
+      <span class="name">星読み毒舌診断</span>
+      <span class="q">全部出します。なぜそう出たのかまで見せます。</span>
+      <span class="need">生年月日・時刻・場所</span>
+    </span>
+  </a>
+  </section>
+
+  <section class="home-section grow-section" id="oracle" aria-labelledby="oracle-title">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker">ORACLE</p>
+        <h2 id="oracle-title">一枚引く</h2>
+      </div>
+      <p>今日のぶんだけ、めくる。</p>
+    </div>
+    <div class="grow-grid">
+      <a class="grow-card oracle-entry" href="oracle/index.html">
+        <div class="oracle-entry-visual" aria-hidden="true">
+          <span class="oracle-mini-card"><img src="slime/images_pixel/tsubomi.png" alt=""></span>
+          <span class="oracle-mini-card"><img src="slime/images_pixel/mankai.png" alt=""></span>
+          <span class="oracle-mini-card"><img src="slime/images_pixel/kaze.png" alt=""></span>
         </div>
-      );
-    };
+        <div class="grow-body">
+          <span class="status-chip oracle">一枚引き</span>
+          <h3>もちオラクル</h3>
+          <p>心にひとつ問いかけて、十二景からカードを一枚。いま必要な言葉と、小さな行動を受け取ります。</p>
+          <span class="grow-link">カードを引く →</span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+  <section class="minor home-section" id="stories" aria-labelledby="stories-title">
+    <div class="section-head compact">
+      <div>
+        <p class="section-kicker">STARS & CALENDAR</p>
+        <h2 id="stories-title">星と暦を読む</h2>
+      </div>
+    </div>
+    <a href="hoshiyomi/2026/index.html">
+      2026年の毒舌運勢
+      <span>星座を選ぶだけ。12星座別の一年。</span>
+    </a>
+    <a href="hoshiyomi/shikumi/index.html">
+      そらと暦のしくみ
+      <span>入力は要りません。なぜそう計算されるのかの解説。</span>
+    </a>
+    <a href="hoshiyomi/aishou/index.html">
+      もっと詳しい相性
+      <span>西洋のシナストリー、宿曜の三九の秘法、四柱推命の日柱。時刻と場所も入れられます。</span>
+    </a>
+  </section>
+
+  <footer class="foot">
+    <div class="footer-brand"><span class="brand-orb" aria-hidden="true"></span><b>もちスラ</b></div>
+    <p>星と季節のあいだで育つ、ちいさな相棒。</p>
+    <p>
+      天体の位置は astronomy-engine（MIT License, Don Cross）で計算しています。
+      東洋の節気は太陽黄経が15度の倍数になる瞬間を直接求めており、節入り表は使っていません。
+    </p>
+    <p>
+      占いは、自分を眺めるための道具です。医療・法律・お金の判断の代わりにはなりません。
+      書いてあることが当たっていないと感じたら、そちらが正しいと思ってください。
+    </p>
+  </footer>
+
+</div>
 </body>
 </html>

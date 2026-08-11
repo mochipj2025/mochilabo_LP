@@ -1,0 +1,101 @@
+/* 相性を読む */
+
+:root {
+  --bg: #fbf8f3; --panel: #ffffff; --ink: #33291f; --ink-soft: #6d6055;
+  --line: #e4dcd0; --accent: #b5763a; --accent-soft: #fbeee0;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1a18; --panel: #262320; --ink: #ece5dc; --ink-soft: #a89c8f;
+    --line: #3b3630; --accent: #d59a5e; --accent-soft: #332a20;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+  font-size: 16.5px; line-height: 1.9; -webkit-text-size-adjust: 100%;
+}
+.wrap { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 32px 18px 64px; }
+
+.top { text-align: center; margin-bottom: 22px; }
+.top h1 { font-size: 27px; margin: 0 0 6px; letter-spacing: .06em; }
+.top .sub { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+
+.lead-box {
+  background: var(--accent-soft); border: 1px solid var(--line); border-radius: 12px;
+  padding: 15px 18px; margin-bottom: 20px; font-size: 14px; line-height: 1.8;
+}
+.lead-box p { margin: 0; }
+.lead-box p + p { margin-top: 8px; }
+
+.panel {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; margin-bottom: 18px;
+}
+.panel h2 { font-size: 19px; margin: 0 0 4px; }
+.lead { margin: 0 0 14px; color: var(--ink-soft); font-size: 13.5px; }
+
+label { display: block; font-size: 13.5px; color: var(--ink-soft); margin-bottom: 6px; }
+.pair-in { display: flex; gap: 14px; flex-wrap: wrap; }
+.pair-in > div { flex: 1 1 200px; }
+input[type="date"] {
+  width: 100%; padding: 13px 12px; font-size: 17px; font-family: inherit;
+  color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 9px;
+}
+.quick { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; margin-top: 9px; }
+.quick-label { font-size: 12px; color: var(--ink-soft); }
+.quick button {
+  padding: 5px 13px; font-size: 13.5px; font-family: inherit; cursor: pointer;
+  color: var(--accent); background: transparent;
+  border: 1px solid var(--line); border-radius: 999px;
+}
+.quick button:hover { border-color: var(--accent); }
+
+.go {
+  width: 100%; margin-top: 16px; padding: 15px; font-size: 16.5px; font-family: inherit;
+  font-weight: 600; color: #fff; background: var(--accent); border: 0; border-radius: 9px; cursor: pointer;
+}
+.err { color: #c0533f; font-size: 14px; margin: 10px 0 0; min-height: 1em; }
+
+/* ---- 二人 ---- */
+.pair { display: flex; gap: 12px; justify-content: center; margin: 24px 0 18px; }
+.who { flex: 0 1 190px; text-align: center; }
+.who img { width: 100%; max-width: 160px; height: auto; }
+.who .nm { margin: 2px 0 0; font-size: 19px; font-weight: 600; letter-spacing: .05em; }
+.who .sub2 { margin: 0; font-size: 12px; color: var(--ink-soft); }
+
+/* ---- 輪 ---- */
+.ring-panel svg { display: block; width: 100%; max-width: 380px; margin: 4px auto 16px; height: auto; }
+.ring-dot { fill: var(--line); }
+.ring-line { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 4 4; }
+.ring-ring { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 2 6; }
+.ring-mark { fill: var(--accent); }
+.ring-label { fill: var(--ink-soft); font-size: 11px; text-anchor: middle; }
+.ring-label.on { fill: var(--ink); font-weight: 700; font-size: 13px; }
+
+/* ---- 行きと帰り ---- */
+.dir {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; margin-bottom: 14px;
+}
+.dir.main { border: 2px solid var(--accent); }
+.dir-tag { margin: 0 0 2px; font-size: 11.5px; letter-spacing: .12em; color: var(--accent); font-weight: 700; }
+.dir h2 { font-size: 23px; margin: 0 0 12px; letter-spacing: .05em; }
+.dir p, .panel p.body { margin: 0 0 13px; }
+.dir p:last-child { margin-bottom: 0; }
+
+.fold { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+.fold summary { padding: 15px 18px; cursor: pointer; font-size: 15px; font-weight: 600; list-style: none; }
+.fold summary::-webkit-details-marker { display: none; }
+.fold summary::before { content: "＋ "; color: var(--accent); }
+.fold[open] summary::before { content: "− "; }
+.fold-in { padding: 0 18px 18px; }
+.fold-in table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.fold-in th, .fold-in td { text-align: left; padding: 9px 4px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.fold-in th { width: 40%; font-weight: 500; color: var(--ink-soft); }
+
+.foot { margin-top: 30px; color: var(--ink-soft); font-size: 12.5px; line-height: 1.85; }
+.foot p { margin: 0 0 10px; }
+.foot a { color: var(--accent); }

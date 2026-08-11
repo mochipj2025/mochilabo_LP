@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>そらと暦のしくみ — 星読み</title>
+<meta name="description" content="星占いの土台になっている天体の動きと暦を、記号を使わず日本語で説明します。図はすべて、このページの中でその場で計算しています。">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="そらと暦のしくみ — 星読み">
+<meta property="og:description" content="なぜ星座は12なのか。なぜ星は逆に動いて見えるのか。なぜ旧暦に閏月があるのか。図はすべてその場で計算しています。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../../assets/galaxy.css?v=20260810-sync1">
+<script src="../../assets/galaxy.js?v=20260810-sync1" defer></script>
+<style>
+/* 書物寄りの見た目。道具の画面とは別の顔にする。 */
+.book { max-width: 1080px; margin: 0 auto; padding: 0 18px 100px; }
+.book-head { padding: 52px 0 28px; border-bottom: 1px solid var(--line); }
+.book-head h1 { font-size: 34px; line-height: 1.35; margin: 0 0 10px; letter-spacing: .06em; font-weight: 700; }
+.book-head .sub { font-size: 16px; color: var(--ink-soft); margin: 0 0 18px; }
+.book-head .note { font-size: 13.5px; color: var(--ink-faint); line-height: 1.85; margin: 0; }
+
+.layout { display: grid; grid-template-columns: 208px minmax(0, 1fr); gap: 44px; align-items: start; }
+nav.toc { position: sticky; top: 22px; padding-top: 34px; font-size: 13px; line-height: 1.6; }
+nav.toc .toc-t { font-size: 11.5px; letter-spacing: .18em; color: var(--ink-faint); margin-bottom: 12px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; }
+nav.toc > ol > li { margin-bottom: 14px; }
+nav.toc a { color: var(--ink-soft); text-decoration: none; display: block; padding: 2px 0; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc .ch { font-weight: 700; color: var(--ink); }
+nav.toc ol ol { margin: 5px 0 0 0; }
+nav.toc ol ol a { font-size: 12.5px; color: var(--ink-faint); padding-left: 10px; border-left: 1px solid var(--line); }
+nav.toc a.here { color: var(--accent); }
+nav.toc ol ol a.here { border-left-color: var(--accent); }
+
+article { min-width: 0; padding-top: 34px; }
+.chap { margin: 0 0 64px; }
+.chap-n { font-size: 12px; letter-spacing: .24em; color: var(--warm); font-weight: 700; margin: 0 0 6px; }
+.chap > h2 { font-size: 27px; margin: 0 0 14px; letter-spacing: .05em; line-height: 1.4; }
+.chap > .chap-lead { font-size: 15.5px; color: var(--ink-soft); line-height: 1.95; margin: 0 0 40px; }
+
+section.sec { margin: 0 0 46px; scroll-margin-top: 20px; }
+section.sec > h3 { font-size: 19.5px; margin: 0 0 14px; line-height: 1.5; letter-spacing: .03em; }
+section.sec p { font-size: 15.5px; line-height: 2.0; margin: 0 0 16px; }
+section.sec p:last-child { margin-bottom: 0; }
+section.sec b { font-weight: 700; }
+
+.fig { margin: 24px 0; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.fig-t { font-size: 12px; letter-spacing: .14em; color: var(--ink-faint); margin: 0 0 14px; }
+.fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.fig-cap { font-size: 12.5px; color: var(--ink-faint); line-height: 1.8; margin: 12px 0 0; }
+/* 共有CSSの表は min-width:460px かつ nowrap。読み物側では両方とも解除する */
+.fig table { width: 100%; min-width: 0; border-collapse: collapse; font-size: 13.5px; }
+/* 共有CSSの表は nowrap なので、読み物側では折り返しに戻す */
+.fig th, .fig td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: normal; }
+.fig th { font-size: 12px; color: var(--ink-faint); font-weight: 600; }
+.fig td.num { font-variant-numeric: tabular-nums; }
+/* grid の 1fr は既定で min-content より縮まないので、minmax(0,1fr) にしないと表がはみ出す */
+.fig .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 22px; }
+.fig .grid2 > * { min-width: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+.pull { margin: 26px 0; padding: 18px 20px; border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 10px 10px 0; }
+.pull p { font-size: 15px; margin: 0; line-height: 1.95; }
+
+.loading { color: var(--ink-faint); font-size: 13px; }
+.backlink { display: inline-block; margin-top: 8px; font-size: 14px; color: var(--accent); text-decoration: none; }
+.backlink:hover { text-decoration: underline; }
+
+@media (max-width: 820px) {
+  .layout { grid-template-columns: 1fr; gap: 0; }
+  nav.toc { position: static; padding: 26px 0 0; }
+  nav.toc > ol { columns: 2; column-gap: 18px; }
+  nav.toc ol ol { display: none; }
+  .book-head { padding-top: 34px; }
+  .book-head h1 { font-size: 26px; }
+  .chap > h2 { font-size: 22px; }
+  section.sec > h3 { font-size: 17.5px; }
+  section.sec p { font-size: 15px; line-height: 1.95; }
+  .fig { padding: 14px; }
+  .fig .grid2 { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
+<meta property="og:site_name" content="もちスラ">
+<meta property="og:image" content="https://mochisura-lab.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mochisura-lab.com/hoshiyomi/shikumi/">
+<link rel="canonical" href="https://mochisura-lab.com/hoshiyomi/shikumi/">
+</head>
+<body>
+<div class="book">
+
+  <header class="book-head">
+    <h1>そらと暦のしくみ</h1>
+    <p class="sub">占いの土台になっている、天体の動きと暦の話。</p>
+    <p class="note">
+      星占いを読んでいると「なぜそうなるのか」が飛ばされたまま話が進みます。ここではそこだけを説明します。<br>
+      <b>このページの図は、すべてその場で計算しています。</b>手で描いた絵ではありません。数字を疑いたくなったら、同じ計算を自分で走らせて確かめられます。
+    </p>
+    <a class="backlink" href="../index.html">← 星読み（診断）へもどる</a>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" id="toc"></nav>
+
+    <article id="article">
+
+      <!-- ============ 第1章 ============ -->
+      <div class="chap" id="ch1">
+        <p class="chap-n">第 1 章</p>
+        <h2>空のしくみ</h2>
+        <p class="chap-lead">
+          星占いが使っているのは、地球から見た空の見え方です。実際の宇宙の姿とは少し違います。
+          その「見え方」がどう決まっているのかを、順番に見ていきます。
+        </p>
+
+        <section class="sec" id="s11">
+          <h3>なぜ星座は12なのか</h3>
+          <p>
+            地球から見ると、太陽は1年かけて空を一周します。その通り道を <b>黄道</b> と呼びます。
+            正確には地球が太陽のまわりを回っているのですが、地上からは太陽のほうが動いて見えます。
+          </p>
+          <p>
+            この一周を12に割ったのが12星座です。一周が360度なので、ひとつぶんは30度。
+            太陽はだいたい1か月でひとつ進みます。<b>12という数は、月の満ち欠けが1年に約12回あることから来ています。</b>
+          </p>
+          <div class="fig" id="f11"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s12">
+          <h3>星占いの牡羊座と、空の牡羊座は別物</h3>
+          <p>
+            ここが、いちばん誤解されているところです。
+            星占いでいう「牡羊座0度」は、<b>春分の日に太陽がいる場所</b>のことです。空に見える牡羊座の星の並びとは関係ありません。
+          </p>
+          <p>
+            そして春分点は、少しずつ動いています。地球の軸がコマのようにゆっくり首を振っているためで、これを <b>歳差</b> といいます。
+            1年に約50秒角。小さく見えますが、積み重なると大きい。
+          </p>
+          <div class="fig" id="f12"><p class="loading">計算しています…</p></div>
+          <p>
+            つまり、いま「牡羊座」と呼ばれている区画には、空では魚座の星が並んでいます。
+            <b>これは星占いが間違っているという話ではありません。</b>
+            西洋占星術は最初から「季節のどこか」を見ているので、星の並びとずれても困らない作りになっています。
+            星の並びのほうを基準にする流儀（インド占星術など）は、また別の答えを出します。
+          </p>
+        </section>
+
+        <section class="sec" id="s13">
+          <h3>なぜ星は逆に動いて見えるのか</h3>
+          <p>
+            惑星が空を逆向きに進んで見える期間があります。これを <b>逆行</b> と呼びます。
+            実際に惑星が逆走しているわけではありません。地球も動いているので、追い越すとき・追い越されるときに、そう見えるだけです。
+          </p>
+          <p>
+            高速道路で隣の車を追い抜くとき、その車が一瞬うしろに下がって見えるのと同じことが、空で起きています。
+          </p>
+          <div class="fig" id="f13"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s14">
+          <h3>なぜ生まれた時刻で「場面」が変わるのか</h3>
+          <p>
+            星占いでは、星の位置のほかに「人生のどの場面に出るか」を見ます。これは生まれた瞬間に
+            <b>東の地平線から昇ってきていた場所</b>を起点にして決めます。
+          </p>
+          <p>
+            地球は24時間で一周するので、地平線の景色は<b>4分で1度</b>動きます。
+            生まれた時刻が10分違えば2度半ずれる。1時間違えば15度ずれて、区画がひとつ変わることもあります。
+            時刻が分からないとこれが出せないのは、そういう理由です。
+          </p>
+          <div class="fig" id="f14"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s15">
+          <h3>なぜ食は年に4回くらいなのか</h3>
+          <p>
+            新月は年に12回あります。もし月が太陽とまったく同じ道を通っていたら、毎回日食になるはずです。
+            そうならないのは、<b>月の通り道が太陽の道から約5度傾いている</b>からです。
+          </p>
+          <p>
+            食が起きるのは、2つの道が交わるあたりで新月や満月になったときだけ。
+            だいたい年に4回から6回に落ち着きます。
+          </p>
+          <div class="fig" id="f15"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s16">
+          <h3>なぜ外側の星は「世代」の話になるのか</h3>
+          <p>
+            星占いでは、天王星・海王星・冥王星を「同じ年ごろの人に共通するもの」として扱います。
+            これは思想ではなく、単に<b>動くのが遅い</b>からです。
+          </p>
+          <p>
+            1年でどれだけ進むかを並べると、はっきりします。月は12回まわるのに、冥王星は1度ちょっとしか動きません。
+            同じ年に生まれた人は、外側の星がほぼ同じ場所にいます。だから個人差にならないのです。
+          </p>
+          <div class="fig" id="f16"><p class="loading">計算しています…</p></div>
+        </section>
+      </div>
+
+      <!-- ============ 第2章 ============ -->
+      <div class="chap" id="ch2">
+        <p class="chap-n">第 2 章</p>
+        <h2>暦のしくみ</h2>
+        <p class="chap-lead">
+          東洋の占いは、星の位置ではなく<b>暦</b>を使います。
+          そして暦は、太陽と月という周期の合わない2つを、なんとか噛み合わせようとしてできています。
+          そのズレの処理を知ると、四柱推命や宿曜の作りが一気に分かります。
+        </p>
+
+        <section class="sec" id="s21">
+          <h3>なぜ年の始まりが立春なのか</h3>
+          <p>
+            四柱推命や九星気学では、年が変わるのは1月1日ではなく<b>立春</b>です。
+            これは伝統というより定義の問題で、<b>二十四節気は太陽の位置そのもの</b>だからです。
+          </p>
+          <p>
+            太陽の一周360度を24等分すると15度きざみ。その15度ごとの点に名前が付いているのが二十四節気です。
+            立春は太陽が315度に来た瞬間。春分は0度、夏至は90度、冬至は270度。
+            <b>つまり節気は、日付ではなく角度です。</b>
+          </p>
+          <div class="fig" id="f21"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s22">
+          <h3>なぜ節気の日付は毎年ずれるのか</h3>
+          <p>
+            1年は365日ちょうどではなく、約365.2422日あります。余った0.2422日ぶん、節気の時刻は毎年およそ6時間ずつ後ろへずれていきます。
+            そして4年に一度うるう日を入れると、1日ぶん前に戻る。この階段を繰り返しています。
+          </p>
+          <p>
+            2025年に「節分が2月2日、立春が2月3日」と話題になったのは、この階段がたまたま日付の境目をまたいだからです。
+          </p>
+          <div class="fig" id="f22"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s23">
+          <h3>なぜ旧暦に閏月があるのか</h3>
+          <p>
+            旧暦の1か月は、月の満ち欠けそのものです。新月から次の新月まで約29.53日。
+            これを12回並べると354日にしかならず、太陽の一年に<b>11日足りません</b>。
+          </p>
+          <p>
+            放っておくと3年で1か月ぶんずれて、季節と暦が合わなくなります。
+            そこで数年に一度、月を1つ余分に入れる。それが閏月です。
+            どの月を増やすかは「中気を含まない月」という規則で決めます。
+          </p>
+          <div class="fig" id="f23"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s24">
+          <h3>なぜ宿は27で、星座は12なのか</h3>
+          <p>
+            宿曜は月の通り道を27に分けます。西洋は同じ空を12に分けます。
+            どちらが正しいという話ではなく、<b>何を基準に数えたかが違う</b>だけです。
+          </p>
+          <p>
+            月が空を一周して同じ場所に戻るまで、約27.3日。1日に1つ進むと考えれば27に割るのが自然です。
+            いっぽう新月から次の新月までは約29.5日。この2つが違うのは、月が回っている間に地球も太陽のまわりを進んでしまうからです。
+          </p>
+          <div class="fig" id="f24"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s25">
+          <h3>なぜ干支は60で一周するのか、なぜ時刻を直すのか</h3>
+          <p>
+            干支は十干（10種）と十二支（12種）の組み合わせです。ただし総当たりの120通りにはなりません。
+            2つが同時にひとつずつ進むので、<b>10と12の最小公倍数である60</b>で一周します。
+          </p>
+          <p>
+            もうひとつ、東洋の占いでは時刻を直すことがあります。時計の時刻は日本中どこでも同じですが、
+            太陽が真南に来る時刻は場所によって違うからです。東京と福岡では40分近く差があります。
+            さらに、地球の軌道が真円でなく地軸も傾いているため、太陽の南中は毎日わずかにずれます。この年間のうねりが <b>均時差</b> です。
+          </p>
+          <div class="fig" id="f25"><p class="loading">計算しています…</p></div>
+        </section>
+      </div>
+
+      <!-- ============ 第3章 ============ -->
+      <div class="chap" id="ch3">
+        <p class="chap-n">第 3 章</p>
+        <h2>どこまでが計算で、どこからが解釈か</h2>
+        <p class="chap-lead">
+          ここまで読んだ方には、もう見えていると思います。
+          占いには、誰がやっても同じ答えになる部分と、そうでない部分があります。混ぜて語られることが多いので、分けておきます。
+        </p>
+
+        <section class="sec" id="s31">
+          <h3>ここまでは計算です</h3>
+          <p>
+            天体の位置、地平線の位置、節気の瞬間、旧暦の日付、干支。これらは全部、天文と算術で決まります。
+            流派も好みも関係ありません。<b>同じ生年月日を入れれば、誰が計算しても同じ数字が出ます。</b>
+          </p>
+          <p>
+            だから検算ができます。星読みは、外の資料と突き合わせられる項目をテストにしてあります。
+            二至二分の太陽の位置、過去36年ぶんの旧正月、中秋の名月、閏月、日の干支の基準日。
+            合わなければ、それはこちらの間違いです。
+          </p>
+          <div class="fig" id="f31"><p class="loading">計算しています…</p></div>
+        </section>
+
+        <section class="sec" id="s32">
+          <h3>ここからは解釈です</h3>
+          <p>
+            「牡羊座はまっさきに動く」「土星は時間をかけて鍛える」。
+            こうした意味づけに、天文学的な根拠はありません。<b>長い時間をかけて積み上げられた、たとえ話の体系です。</b>
+          </p>
+          <p>
+            たとえ話が無意味だという話ではありません。
+            自分を眺めるための言葉として、よくできています。ただ、物理の話ではない。そこは分けて受け取ったほうが、たぶん健康です。
+          </p>
+          <p>
+            解釈の側は、流派によって答えが割れます。星読みがどちら側を採ったかは、正直に書いてあります。
+          </p>
+          <div class="fig" id="f32"><p class="loading">読み込んでいます…</p></div>
+        </section>
+
+        <section class="sec" id="s33">
+          <h3>だから、使った暦を隠さない</h3>
+          <p>
+            東洋の占いは、どの暦をどう解釈したかで答えが変わります。
+            節入りの瞬間をどこに置くか。日付の境目を何時にするか。時刻を直すかどうか。
+            ここを伏せて結果だけ出されると、読んだ人は確かめようがありません。
+          </p>
+          <p>
+            だから星読みは、節入りの瞬間も、旧暦の日付も、太陽で見た時刻も、全部画面に出しています。
+            気持ちの問題ではなく、<b>検証できる形にしておくため</b>です。
+          </p>
+          <div class="pull">
+            <p>
+              占いは、これから起きることを言い当てるものではなく、自分を眺める角度をひとつ増やすための道具です。
+              書いてあることが当たっていないと感じたら、そちらが正しいと思ってください。
+            </p>
+          </div>
+          <p style="margin-top:22px">
+            <a class="backlink" href="../index.html">← 星読み（診断）へもどる</a>
+          </p>
+        </section>
+      </div>
+
+    </article>
+  </div>
+</div>
+
+<script src="../assets/vendor/astronomy.browser.min.js"></script>
+<script src="../assets/text.js"></script>
+<script src="../assets/astro.js"></script>
+<script src="../assets/koyomi.js"></script>
+<script src="shikumi-calc.js"></script>
+<script src="shikumi.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>相性を読む — 行きと帰りで、名前が変わる</title>
+<meta name="description" content="生年月日を二つ入れるだけ。相手があなたに与える作用と、あなたが相手に与える作用は同じではありません。点数はつけません。">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="../assets/galaxy.css?v=20260810-sync1">
+<script src="../assets/galaxy.js?v=20260810-sync1" defer></script>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="もちスラ">
+<meta property="og:title" content="相性を読む — もちスラ">
+<meta property="og:description" content="相手があなたに与えるものと、あなたが相手に与えるものは違います。点数はつけません。">
+<meta property="og:image" content="https://mochisura-lab.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mochisura-lab.com/aishou/">
+<link rel="canonical" href="https://mochisura-lab.com/aishou/">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>相性を読む</h1>
+    <p class="sub">行きと帰りで、名前が変わります。</p>
+  </header>
+
+  <div class="lead-box">
+    <p><b>点数はつけません。</b>良い悪いではなく、どこで噛み合って、どこでずれるかだけを書きます。</p>
+    <p>聞くのは生年月日を二つだけ。時刻も場所も要りません。</p>
+  </div>
+
+  <form id="form" autocomplete="off">
+    <section class="panel">
+      <div class="pair-in">
+        <div>
+          <label for="d1">ひとりめ（あなた）</label>
+          <input type="date" id="d1" min="1900-01-01" max="2100-12-31" required>
+        </div>
+        <div>
+          <label for="d2">ふたりめ（相手）</label>
+          <input type="date" id="d2" min="1900-01-01" max="2100-12-31" required>
+        </div>
+      </div>
+      <button type="submit" class="go">相性を読む</button>
+      <p class="err" id="err"></p>
+    </section>
+  </form>
+
+  <div id="result" hidden>
+
+    <section class="pair">
+      <div class="who">
+        <img id="img-a" alt="">
+        <p class="nm" id="nm-a"></p>
+        <p class="sub2">あなた</p>
+      </div>
+      <div class="who">
+        <img id="img-b" alt="">
+        <p class="nm" id="nm-b"></p>
+        <p class="sub2">相手</p>
+      </div>
+    </section>
+
+    <section class="panel ring-panel">
+      <h2 id="kyori-title"></h2>
+      <p class="lead" id="kyori-lead"></p>
+      <div id="ring"></div>
+      <div id="kyori-body"></div>
+    </section>
+
+    <section class="dir main">
+      <p class="dir-tag">相手はあなたにとって</p>
+      <h2 id="ab-name"></h2>
+      <div id="ab-body"></div>
+    </section>
+
+    <section class="dir">
+      <p class="dir-tag">あなたは相手にとって</p>
+      <h2 id="ba-name"></h2>
+      <div id="ba-body"></div>
+    </section>
+
+    <section class="panel">
+      <h2 id="gogyo-title"></h2>
+      <p class="lead" id="gogyo-lead"></p>
+      <div id="gogyo-body"></div>
+    </section>
+
+    <details class="fold">
+      <summary>使った暦（結果の根拠）</summary>
+      <div class="fold-in">
+        <p class="lead">どこから出た結果かを隠さず全部出します。</p>
+        <table id="koyomi"></table>
+      </div>
+    </details>
+
+  </div>
+
+  <footer class="foot">
+    <p>
+      日柱の干支は日本標準時の0時で切り替わります。通変星は二人の日干どうしを両方向から見たもので、
+      行きと帰りで名前が変わるのは計算どおりです。景の距離は十二運を輪にしたときの隔たりで、0から6まで。
+    </p>
+    <p>
+      占いは、自分を眺めるための道具です。この結果で人を選ばないでください。
+      書いてあることが当たっていないと感じたら、そちらが正しいと思ってください。
+    </p>
+    <p><a href="../index.html">ほかの診断を見る</a>　／　<a href="../hoshiyomi/aishou/index.html">もっと詳しい相性（星読み）</a></p>
+  </footer>
+
+</div>
+
+<script src="../hoshiyomi/assets/vendor/astronomy.browser.min.js"></script>
+<script src="../hoshiyomi/assets/koyomi.js"></script>
+<script src="../hoshiyomi/assets/toyo.js"></script>
+<script src="../assets/store.js?v=20260811-1"></script>
+<script src="assets/aishou.js"></script>
+<script src="assets/text.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

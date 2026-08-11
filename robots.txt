@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# 外したものの置き場。読む価値がないので拾わせない。
+Disallow: /_boneyard/
+
+Sitemap: https://mochisura-lab.com/sitemap.xml

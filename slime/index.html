@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>スライム診断 — 生年月日だけで、素のあなたを読む</title>
+<meta name="description" content="生年月日を入れるだけ。四柱推命の日柱と月柱から、いまどの段階にいるか、何でできているか、人とどう関わるかを読みます。">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="../assets/galaxy.css?v=20260810-sync1">
+<script src="../assets/galaxy.js?v=20260810-sync1" defer></script>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="もちスラ">
+<meta property="og:title" content="スライム診断 — もちスラ">
+<meta property="og:description" content="生年月日だけで、素のあなたを読みます。色・景・星・ズレの四つに絞って言い切ります。">
+<meta property="og:image" content="https://mochisura-lab.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mochisura-lab.com/slime/">
+<link rel="canonical" href="https://mochisura-lab.com/slime/">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>スライム診断</h1>
+    <p class="sub">生年月日だけで、素のあなたを読みます。</p>
+  </header>
+
+  <section class="panel">
+    <form id="form" autocomplete="off">
+      <label for="birthdate">生年月日</label>
+      <input type="date" id="birthdate" min="1900-01-01" max="2100-12-31" required>
+      <button type="submit" class="go">診断する</button>
+      <p class="err" id="err"></p>
+    </form>
+    <p class="note">
+      聞くのは生年月日だけです。時刻も場所も要りません。入力した内容は外へ送信していません。
+    </p>
+  </section>
+
+  <div id="result" hidden>
+
+    <section class="hero">
+      <img id="slime" alt="" width="240">
+      <p class="title" id="title"></p>
+      <p class="stamp" id="stamp"></p>
+    </section>
+
+    <div id="reads"></div>
+
+    <details class="fold">
+      <summary>使った暦（結果の根拠）</summary>
+      <div class="fold-in">
+        <p class="lead">東洋の占いは、どの暦を使ったかで結果が変わります。隠さず全部出します。</p>
+        <table id="koyomi"></table>
+      </div>
+    </details>
+
+  </div>
+
+  <footer class="foot">
+    <p>
+      干支と節入りの計算は星読みの <code>koyomi.js</code> と <code>toyo.js</code> をそのまま使っています。
+      節気は太陽黄経が15度の倍数になる瞬間を直接求めており、節入り表は使っていません。
+      日界は日本標準時の0時。時刻を聞かないので、時柱は出していません。
+    </p>
+    <p>
+      占いは、自分を眺めるための道具です。医療・法律・お金の判断の代わりにはなりません。
+      書いてあることが当たっていないと感じたら、そちらが正しいと思ってください。
+    </p>
+    <p class="next">
+      <a href="../index.html">ほかの診断を見る</a>　／
+      <a href="../aishou/index.html">相性を読む</a>　／
+      <a href="../oracle/index.html">カードを一枚引く</a>
+    </p>
+  </footer>
+
+</div>
+
+<script src="../hoshiyomi/assets/vendor/astronomy.browser.min.js"></script>
+<script src="../hoshiyomi/assets/koyomi.js"></script>
+<script src="../hoshiyomi/assets/toyo.js"></script>
+<script src="../assets/store.js?v=20260811-1"></script>
+<script src="assets/slime.js"></script>
+<script src="assets/text.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+/* もちオラクル — 卓とカード */
+
+:root {
+  --o-bg: #14121b;
+  --o-panel: #1e1b28;
+  --o-ink: #f0ead9;
+  --o-soft: #a89ec0;
+  --o-line: #322c42;
+  --o-gold: #d9b06a;
+  --o-scene: #7f9fd4;
+  --o-heart: #dda3bb;
+  --o-guide: #86bb9c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 50% 8%, #2b2540 0, transparent 55%),
+    radial-gradient(circle at 12% 82%, #21273b 0, transparent 48%),
+    var(--o-bg);
+  color: var(--o-ink);
+  font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+  font-size: 16.5px;
+  line-height: 1.9;
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 22px 18px 70px; }
+
+.nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; font-size: 14px; }
+.nav a { color: var(--o-soft); text-decoration: none; }
+.nav a:hover { color: var(--o-ink); }
+
+.top { text-align: center; margin-bottom: 8px; }
+.kicker { margin: 0 0 4px; font-size: 11px; letter-spacing: .26em; color: var(--o-gold); }
+.top h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: .1em; font-weight: 600; }
+.top p { margin: 0; color: var(--o-soft); font-size: 14px; }
+
+.legend { display: flex; gap: 10px; justify-content: center; margin: 16px 0 26px; flex-wrap: wrap; font-size: 12px; }
+.legend span { border: 1px solid var(--o-line); border-radius: 999px; padding: 4px 13px; color: var(--o-soft); }
+.legend b { color: var(--o-ink); font-weight: 600; margin-right: 5px; }
+
+/* ---------- 卓 ---------- */
+
+.table {
+  position: relative;
+  border: 1px solid var(--o-line);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(46,39,64,.62), rgba(24,21,34,.62));
+  padding: 26px 18px 22px;
+  overflow: hidden;
+}
+.table::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 34%, rgba(217,176,106,.10) 0, transparent 62%);
+  pointer-events: none;
+}
+
+.stage { position: relative; height: 330px; display: flex; align-items: center; justify-content: center; }
+
+/* 山札 */
+.deck { position: absolute; top: 50%; left: 50%; width: 148px; height: 222px; translate: -50% -50%; }
+.deck i {
+  position: absolute; inset: 0;
+  border-radius: 12px;
+  border: 1px solid rgba(217,176,106,.34);
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 6px, transparent 6px 12px),
+    linear-gradient(160deg, #3b3357, #241f36);
+  box-shadow: 0 10px 22px rgba(0,0,0,.42);
+  translate: calc(var(--dx, 0) * 1px) calc(var(--n) * -2px + var(--dy, 0) * 1px);
+  rotate: calc(var(--dr, 0) * 1deg);
+  transition: translate .22s ease, rotate .22s ease;
+}
+.deck i::after {
+  content: "🍑";
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  font-size: 30px; opacity: .5;
+}
+.deck i:not(:last-child)::after { content: none; }
+.deck.is-empty { opacity: .18; }
+
+/* 引いたカード */
+.drawn {
+  position: absolute; top: 50%; left: 50%;
+  width: 148px; height: 222px;
+  translate: -50% -50%;
+  transform-style: preserve-3d;
+  transition: translate .42s cubic-bezier(.22,.9,.3,1.2), rotate .42s ease, scale .42s ease;
+  opacity: 0; pointer-events: none;
+}
+.drawn.is-live { opacity: 1; }
+.drawn.is-lift { translate: -50% -170%; scale: 1.05; rotate: -6deg; }
+.drawn.is-land { translate: -50% -50%; scale: 1.32; rotate: 0deg; }
+.drawn.is-land.is-reversed { rotate: 180deg; }
+
+.face {
+  position: absolute; inset: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  transition: rotate .5s cubic-bezier(.4,.1,.3,1);
+  transform-style: preserve-3d;
+}
+.face.back {
+  border: 1px solid rgba(217,176,106,.4);
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 6px, transparent 6px 12px),
+    linear-gradient(160deg, #3b3357, #241f36);
+  display: grid; place-items: center; font-size: 34px;
+}
+.face.front { rotate: y 180deg; border: 1px solid rgba(217,176,106,.55); background: #100e18; }
+.face.front img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.drawn.is-open .face.back { rotate: y 180deg; }
+.drawn.is-open .face.front { rotate: y 0deg; }
+
+.rev-flag {
+  position: absolute; left: 50%; bottom: -30px; translate: -50% 0;
+  font-size: 11px; letter-spacing: .18em; color: var(--o-gold);
+  border: 1px solid rgba(217,176,106,.42); border-radius: 999px; padding: 2px 12px;
+  background: rgba(20,18,27,.8); white-space: nowrap; opacity: 0; transition: opacity .3s ease .35s;
+}
+.drawn.is-open .rev-flag { opacity: 1; }
+
+/* ---------- 操作 ---------- */
+
+.controls { margin-top: 14px; }
+.qrow { display: flex; gap: 9px; margin-bottom: 12px; flex-wrap: wrap; }
+.qrow input {
+  flex: 1 1 220px; padding: 12px 13px; font-size: 15px; font-family: inherit;
+  color: var(--o-ink); background: rgba(0,0,0,.28);
+  border: 1px solid var(--o-line); border-radius: 10px;
+}
+.qrow input::placeholder { color: #6d6482; }
+
+.spread { display: flex; gap: 8px; margin-bottom: 12px; }
+.spread button {
+  flex: 1; padding: 10px; font-family: inherit; font-size: 14px;
+  color: var(--o-soft); background: rgba(0,0,0,.2);
+  border: 1px solid var(--o-line); border-radius: 10px; cursor: pointer;
+}
+.spread button.on { color: var(--o-ink); border-color: var(--o-gold); background: rgba(217,176,106,.12); }
+
+.acts { display: flex; gap: 9px; }
+.acts button {
+  flex: 1; padding: 15px; font-family: inherit; font-size: 16px; font-weight: 600;
+  border-radius: 11px; cursor: pointer; border: 1px solid var(--o-line);
+  color: var(--o-ink); background: rgba(255,255,255,.05);
+}
+.acts .primary { border: 0; color: #2a2118; background: linear-gradient(140deg, #e8c583, var(--o-gold)); }
+.acts button:disabled { opacity: .4; cursor: default; }
+
+.status { margin: 12px 0 0; text-align: center; font-size: 13px; color: var(--o-soft); min-height: 1.6em; }
+
+/* ---------- 読み ---------- */
+
+.reading { margin-top: 22px; }
+.rcard {
+  border: 1px solid var(--o-line); border-radius: 16px; padding: 20px;
+  background: rgba(30,27,40,.72); margin-bottom: 14px;
+}
+.rcard .head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+.rcard .suit { font-size: 11px; letter-spacing: .16em; padding: 3px 9px; border-radius: 5px; }
+.suit.scene { color: var(--o-scene); background: rgba(127,159,212,.14); }
+.suit.heart { color: var(--o-heart); background: rgba(221,163,187,.14); }
+.suit.guide { color: var(--o-guide); background: rgba(134,187,156,.14); }
+.rcard h3 { margin: 0; font-size: 23px; letter-spacing: .05em; }
+.rcard h3 small { font-size: 12px; color: var(--o-soft); margin-left: 7px; font-weight: 400; }
+.rcard .ori { font-size: 12px; color: var(--o-gold); }
+.rcard .pos { margin: 0 0 10px; font-size: 12px; color: var(--o-soft); letter-spacing: .1em; }
+.rcard .line { margin: 0 0 12px; font-size: 18px; line-height: 1.75; color: var(--o-ink); }
+.rcard p.body { margin: 0 0 10px; font-size: 15.5px; color: #ddd5ea; }
+.rcard .act {
+  margin: 14px 0 0; padding: 12px 14px; border-radius: 10px;
+  background: rgba(217,176,106,.1); border: 1px solid rgba(217,176,106,.28); font-size: 15px;
+}
+.rcard .act b { display: block; font-size: 11px; letter-spacing: .16em; color: var(--o-gold); margin-bottom: 3px; }
+.qnote { margin: 0 0 14px; font-size: 13px; color: var(--o-soft); text-align: center; }
+
+/* ---------- 図鑑・履歴 ---------- */
+
+.section { margin-top: 40px; }
+.section h2 { font-size: 19px; margin: 0 0 4px; }
+.section .lead { margin: 0 0 14px; color: var(--o-soft); font-size: 13px; }
+
+.filters { display: flex; gap: 7px; margin-bottom: 14px; flex-wrap: wrap; }
+.filters button {
+  padding: 6px 14px; font-family: inherit; font-size: 13px; cursor: pointer;
+  color: var(--o-soft); background: transparent; border: 1px solid var(--o-line); border-radius: 999px;
+}
+.filters button.on { color: var(--o-ink); border-color: var(--o-gold); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
+.grid figure { margin: 0; cursor: pointer; }
+.grid img { width: 100%; aspect-ratio: 2/3; object-fit: cover; border-radius: 8px; border: 1px solid var(--o-line); display: block; }
+.grid figcaption { font-size: 11.5px; color: var(--o-soft); text-align: center; margin-top: 4px; }
+
+.hist { list-style: none; margin: 0; padding: 0; }
+.hist li {
+  display: flex; gap: 10px; align-items: baseline;
+  padding: 10px 2px; border-bottom: 1px solid var(--o-line); font-size: 14px;
+}
+.hist li time { color: var(--o-soft); font-size: 12px; margin-left: auto; }
+.hist .empty { color: var(--o-soft); font-size: 13.5px; }
+
+.foot { margin-top: 40px; color: var(--o-soft); font-size: 12.5px; line-height: 1.85; }
+.foot a { color: var(--o-gold); }
+
+@media (max-width: 480px) {
+  .stage { height: 300px; }
+  .drawn.is-land { scale: 1.16; }
+}

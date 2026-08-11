@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>マイページ — この端末の中だけ</title>
+<meta name="description" content="生年月日をひとつ覚えておくと、診断のたびに入力しなくて済みます。保存先はこの端末のブラウザだけで、サーバーへは何も送っていません。">
+<link rel="stylesheet" href="assets/style.css?v=20260811-1">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="もちスラ">
+<meta property="og:title" content="マイページ — もちスラ">
+<meta property="og:description" content="生年月日をひとつ覚えておくと、診断のたびに入力しなくて済みます。保存先はこの端末のブラウザだけです。">
+<meta property="og:image" content="https://mochisura-lab.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mochisura-lab.com/me/">
+<link rel="canonical" href="https://mochisura-lab.com/me/">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a href="../index.html">← もちスラ</a>
+  </nav>
+
+  <header class="top">
+    <h1>マイページ</h1>
+    <p class="sub">この端末の中だけに、ふたつだけ覚えておきます。</p>
+  </header>
+
+  <div class="lead-box">
+    <p><b>サーバーへは何も送っていません。</b>保存先はこのブラウザの中だけです。ログインもありません。</p>
+    <p>覚えるのは生年月日だけで、診断の結果は保存していません。同じ日付からは毎回同じ結果が出るので、持っておく意味がないからです。</p>
+  </div>
+
+  <section class="panel">
+    <h2>あなたの生年月日</h2>
+    <p class="lead">登録しておくと、診断を開いたときに入力欄へ先に入ります。診断が勝手に始まることはありません。</p>
+    <div class="row">
+      <input type="date" id="me" min="1900-01-01" max="2100-12-31" aria-label="生年月日">
+      <button type="button" id="saveMe" class="go">覚える</button>
+    </div>
+    <p class="msg" id="meMsg"></p>
+    <div class="links" id="meLinks" hidden>
+      <a href="../slime/index.html">スライム診断へ</a>
+      <a href="../money/index.html">お金の診断へ</a>
+      <a href="../aishou/index.html">相性を読むへ</a>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>よく見る人</h2>
+    <p class="lead">相性を読むときに選べます。8人まで。呼び名は自由で、本名でなくて構いません。</p>
+    <div class="row">
+      <input type="text" id="pname" maxlength="20" placeholder="呼び名" aria-label="呼び名">
+      <input type="date" id="pdate" min="1900-01-01" max="2100-12-31" aria-label="その人の生年月日">
+      <button type="button" id="addPerson" class="go small">足す</button>
+    </div>
+    <p class="msg" id="pMsg"></p>
+    <ul class="people" id="people"></ul>
+    <p class="note">
+      他人の生年月日を預かることになります。本人が嫌がるなら入れないでください。
+      ここに入れたものも、この端末から出ていきません。
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>いま保存されているもの</h2>
+    <p class="lead">中身を隠しません。ブラウザに入っているものを、そのまま出しています。</p>
+    <pre id="dump"></pre>
+    <div class="row">
+      <button type="button" id="clearAll" class="danger">全部消す</button>
+      <button type="button" id="clearOracle" class="plain">オラクルの履歴だけ消す</button>
+    </div>
+    <p class="msg" id="clearMsg"></p>
+  </section>
+
+  <footer class="foot">
+    <p>
+      保存にはブラウザの localStorage を使っています。プライベートウィンドウ、別の端末、別のブラウザでは共有されません。
+      ブラウザの閲覧データを消すと、ここの内容も消えます。
+    </p>
+    <p>
+      占いは、自分を眺めるための道具です。ここに覚えさせた生年月日も、その道具を使いやすくするためだけのものです。
+      医療・法律・お金の判断の代わりにはなりません。
+    </p>
+    <p><a href="../index.html">ほかの診断を見る</a>　／　<a href="../slime/index.html">スライム診断</a>　／　<a href="../oracle/index.html">カードを引く</a></p>
+  </footer>
+
+</div>
+
+<script src="../assets/store.js?v=20260811-1"></script>
+<script src="assets/app.js?v=20260811-1" defer></script>
+</body>
+</html>

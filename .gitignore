@@ -1,0 +1,13 @@
+# 外したものの置き場。手元には残すが、公開はしない。
+_boneyard/
+
+# 作りかけ・作業用。公開する必要がない。
+slime/wip/
+slime/sheet.png
+oracle/assets/oracle-cover-concept-v1.png
+oracle/assets/oracle-style-master-v1.png
+oracle/assets/oracle-style-master-v2-peach.png
+
+# 一時ファイル
+*.log
+codex_*.txt

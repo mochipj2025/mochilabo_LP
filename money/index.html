@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お金の診断 — 思っているものと、払っているもの</title>
+<meta name="description" content="七つの領域に点を配ると、金星の位置と突き合わせてギャップを出します。収入も貯金も家賃も聞きません。金額はあなたが選んだ分の足し算だけで出します。">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="../assets/galaxy.css?v=20260810-sync1">
+<script src="../assets/galaxy.js?v=20260810-sync1" defer></script>
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="もちスラ">
+<meta property="og:title" content="お金の診断 — もちスラ">
+<meta property="og:description" content="大事だと思っているものと、実際に払っているもののズレ。収入も貯金も家賃も聞きません。">
+<meta property="og:image" content="https://mochisura-lab.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mochisura-lab.com/money/">
+<link rel="canonical" href="https://mochisura-lab.com/money/">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>お金の診断</h1>
+    <p class="sub">思っているものと、実際に払っているもの。</p>
+  </header>
+
+  <div class="lead-box">
+    <p><b>収入も、貯金額も、家賃も聞きません。</b>答えたくないことを一つも取らずに額を出します。</p>
+    <p>金額はあなたが選んだぶんの足し算だけで出します。占いが決めるのは向きと癖だけです。</p>
+  </div>
+
+  <form id="form" autocomplete="off">
+
+    <section class="panel">
+      <h2><span class="step">1</span>生年月日</h2>
+      <input type="date" id="birthdate" min="1900-01-01" max="2100-12-31" required aria-label="生年月日">
+    </section>
+
+    <section class="panel">
+      <h2><span class="step">2</span>七つに、十点を配る</h2>
+      <p class="lead">
+        お金と時間を、いまいちばん向けたいところに配ってください。
+        全部に配る必要はありません。ゼロがあっていいです。
+      </p>
+      <div id="points"></div>
+      <p class="remain">のこり <b id="remain">10</b> 点</p>
+    </section>
+
+    <section class="panel" id="fill-panel" hidden>
+      <h2><span class="step">3</span>どこまで満たすか</h2>
+      <p class="lead">点を多く配った三つだけ聞きます。金額は目安で、そのまま足し算に使います。</p>
+      <div id="fills"></div>
+    </section>
+
+    <button type="submit" class="go" id="go" disabled>診断する</button>
+    <p class="err" id="err"></p>
+  </form>
+
+  <div id="result" hidden>
+
+    <section class="gap" id="gap">
+      <p class="gap-tag" id="gap-tag"></p>
+      <h2 class="gap-title" id="gap-title"></h2>
+      <div id="gap-body"></div>
+    </section>
+
+    <div class="two">
+      <section class="half">
+        <h3>あなたが選んだ <b id="s-name"></b></h3>
+        <p class="mini" id="s-lead"></p>
+        <p id="s-body"></p>
+      </section>
+      <section class="half">
+        <h3>金星がある <b id="k-name"></b></h3>
+        <p class="mini" id="k-lead"></p>
+        <p id="k-body"></p>
+      </section>
+    </div>
+
+    <section class="read">
+      <h2><span class="tag">癖</span><span id="star-name"></span></h2>
+      <p class="lead" id="star-lead"></p>
+      <div id="star-body"></div>
+    </section>
+
+    <section class="panel money">
+      <h2>今の暮らしに、いくら足すか</h2>
+      <table id="breakdown"></table>
+      <div class="totals" id="totals"></div>
+      <p class="note" id="money-note"></p>
+    </section>
+
+    <details class="fold">
+      <summary>使った数字（結果の根拠）</summary>
+      <div class="fold-in">
+        <p class="lead">どこから出た結果かを隠さず全部出します。</p>
+        <table id="koyomi"></table>
+      </div>
+    </details>
+
+  </div>
+
+  <footer class="foot">
+    <p>
+      金星の位置は astronomy-engine（MIT License, Don Cross）で計算しています。
+      時刻を聞かないので、ハウスとアセンダントは出していません。金星は約23日で星座を移るため、
+      境目の日に生まれた人は隣の星座も併記します。
+    </p>
+    <p>
+      これは資産運用や税務の助言ではありません。金額はあなたが選んだ目安を足しただけの数字で、
+      請求ベースの換算も割った数をそのまま画面に出しています。実際の判断は専門家に相談してください。
+    </p>
+    <p><a href="../index.html">ほかの診断を見る</a></p>
+  </footer>
+
+</div>
+
+<script src="../hoshiyomi/assets/vendor/astronomy.browser.min.js"></script>
+<script src="../hoshiyomi/assets/text.js"></script>
+<script src="../hoshiyomi/assets/astro.js"></script>
+<script src="../hoshiyomi/assets/koyomi.js"></script>
+<script src="../hoshiyomi/assets/toyo.js"></script>
+<script src="../assets/store.js?v=20260811-1"></script>
+<script src="assets/money.js"></script>
+<script src="assets/text.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026年の毒舌運勢 — 星読み毒舌診断</title>
+<meta name="description" content="星座を選ぶだけで読める、2026年の毒舌運勢。図星を笑える言葉で、12星座別に読みます。">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026年の毒舌運勢 — 星読み毒舌診断">
+<meta property="og:description" content="海王星165年ぶり、土星29年ぶり、天王星84年ぶり。三つの星が続けて星座を移る年の読み方。">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../../assets/galaxy.css?v=20260810-sync1">
+<script src="../../assets/galaxy.js?v=20260810-sync1" defer></script>
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
+<meta property="og:site_name" content="もちスラ">
+<meta property="og:image" content="https://mochisura-lab.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mochisura-lab.com/hoshiyomi/2026/">
+<link rel="canonical" href="https://mochisura-lab.com/hoshiyomi/2026/">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>2026年の毒舌運勢</h1>
+    <p class="sub">星座を選ぶだけ。今年の図星を、笑える言葉で。</p>
+
+    <div class="pitch">
+      2026年は、外側の星が三つ続けて星座を変える年です。こういう年は何十年に一度しかありません。
+      <b>海王星は165年ぶり、土星は29年ぶり、天王星は84年ぶり</b>の引っ越しです。
+      しかもその切り替わりが、年の前半に集中しています。
+      だから「今年は何が起きるか」より、<b>どこが終わって、どこが始まるか</b>で読むのが合っています。
+    </div>
+  </header>
+
+  <section class="panel">
+    <h2><span class="step">選ぶ</span>あなたの星座</h2>
+    <p class="lead">生まれた日の太陽の星座を選んでください。分からない場合は生年月日から調べられます。</p>
+    <div class="tonebar" id="tonebar" style="margin-bottom:14px">
+      <span class="tone-label">表示</span>
+      <button type="button" class="tonebtn on" data-tone="gag">毒舌診断</button>
+      <button type="button" class="tonebtn" data-tone="soft">やさしく読む</button>
+    </div>
+    <p class="tonenote" id="tonenote"></p>
+    <div class="signgrid" id="signgrid"></div>
+    <details class="read" id="finder" style="margin-top:14px">
+      <summary><span>星座が分からない</span><span class="pos">生年月日から調べる</span></summary>
+      <div class="inner">
+        <div class="field" style="margin-bottom:0">
+          <label for="finddate">生年月日</label>
+          <input type="date" id="finddate" min="1900-01-01" max="2100-12-31">
+          <div class="hint" id="findresult"></div>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <div id="y2026"></div>
+
+  <section class="panel" id="more" hidden>
+    <h2>もっと正確に読むなら</h2>
+    <p class="lead">
+      このページは太陽星座を1室として数えた「12星座別」の読み方です。
+      生まれた時刻と場所まで入れると、ハウスが実際の位置で決まるので、当たる場所が変わることがあります。
+      さらに、出生図の天体に今年の星が直接当たる日付や、四柱推命・九星気学から見た2026年も出せます。
+    </p>
+    <p><a class="biglink" href="../index.html">星読み（本体）で個別に読む</a></p>
+  </section>
+
+  <p style="margin:34px 0 0; font-size:14.5px;">
+    <a href="../shikumi/index.html" style="display:inline-block; padding:13px 20px; border:1px solid var(--line); border-radius:10px; color:var(--accent); text-decoration:none;">
+      なぜ星がそう動くのか → そらと暦のしくみ
+    </a>
+  </p>
+
+  <footer class="foot">
+    <p>
+      天体の位置は <a href="https://github.com/cosinekitty/astronomy" target="_blank" rel="noopener">astronomy-engine</a>（MIT License, Don Cross）で計算しています。
+      イングレスと食の日付は計算で求めたもので、日本時間です。
+    </p>
+    <p>
+      占いは、これから起きることを言い当てるものではなく、見方を一つ増やすための道具です。
+      医療・法律・お金の判断の代わりにはなりません。
+      書いてあることが当たっていないと感じたら、そちらが正しいと思ってください。
+    </p>
+  </footer>
+
+</div>
+
+<script src="../assets/vendor/astronomy.browser.min.js"></script>
+<script src="../assets/tone.js"></script>
+<script src="../assets/text.js"></script>
+<script src="../assets/text-spicy.js"></script>
+<script src="../assets/text-gag.js?v=20260807-4"></script>
+<script src="../assets/astro.js"></script>
+<script src="../assets/y2026.js"></script>
+<script src="../assets/y2026-text.js"></script>
+<script src="../assets/icons.js"></script>
+<script src="../assets/app-y2026.js"></script>
+<script>
+(function () {
+  'use strict';
+  var T = window.HOSHI_TEXT;
+  var SIGN_IMAGES = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo',
+    'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'];
+  var grid = document.getElementById('signgrid');
+  var out = document.getElementById('y2026');
+
+  /* 読み口の切り替え */
+  var TONE = window.HOSHI_TONE;
+  TONE.restore();
+  var toneBtns = document.querySelectorAll('#tonebar .tonebtn');
+  var selected = null;
+  function paintTone() {
+    Array.prototype.forEach.call(toneBtns, function (b) {
+      b.classList.toggle('on', b.dataset.tone === TONE.value);
+    });
+    var pack = TONE.pack();
+    document.getElementById('tonenote').textContent = pack
+      ? pack.NOTICE
+      : 'いまはやさしく読んでいます。図星を笑って読みたいときは「毒舌診断」に戻してください。';
+  }
+  Array.prototype.forEach.call(toneBtns, function (b) {
+    b.addEventListener('click', function () {
+      TONE.set(b.dataset.tone);
+      paintTone();
+      if (selected !== null) window.HOSHI_APP_Y2026.render(out, { sunSign: selected });
+    });
+  });
+  paintTone();
+
+  T.signs.forEach(function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'signbtn';
+    b.dataset.sign = i;
+    var image = document.createElement('img');
+    image.className = 'sign-mascot-thumb';
+    image.src = '../assets/zodiac/' + SIGN_IMAGES[i] + '.png';
+    image.alt = '';
+    var n = document.createElement('span');
+    n.className = 'sb-name';
+    n.textContent = s.name;
+    var k = document.createElement('span');
+    k.className = 'sb-el';
+    k.textContent = s.element;
+    b.appendChild(image);
+    b.appendChild(n);
+    b.appendChild(k);
+    b.addEventListener('click', function () {
+      Array.prototype.forEach.call(grid.children, function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+      selected = i;
+      window.HOSHI_APP_Y2026.render(out, { sunSign: i });
+      document.getElementById('more').hidden = false;
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      try { localStorage.setItem('hoshiyomi.2026.sign', String(i)); } catch (e) { /* 保存できなくても支障はない */ }
+    });
+    grid.appendChild(b);
+  });
+
+  /* 生年月日から太陽星座を出す（このページの中だけで計算する） */
+  document.getElementById('finddate').addEventListener('change', function (ev) {
+    var v = ev.target.value;
+    var msg = document.getElementById('findresult');
+    if (!v) { msg.textContent = ''; return; }
+    var p = v.split('-').map(Number);
+    try {
+      var r = window.HOSHI_ASTRO.calculate({
+        year: p[0], month: p[1], day: p[2], hour: 12, minute: 0,
+        lat: 35.69, lon: 139.69, tzOffset: 9, autoJapanDst: true, timeUnknown: true
+      });
+      var idx = r.bodies[0].sign;
+      msg.textContent = 'あなたの太陽星座は ' + T.signs[idx].name + ' です。下で選ばれています。';
+      grid.children[idx].click();
+    } catch (e) {
+      msg.textContent = '計算できませんでした。日付を確かめてください。';
+    }
+  });
+
+  try {
+    var saved = localStorage.getItem('hoshiyomi.2026.sign');
+    if (saved !== null && grid.children[Number(saved)]) grid.children[Number(saved)].click();
+  } catch (e) { /* 読めなくても支障はない */ }
+})();
+</script>
+</body>
+</html>

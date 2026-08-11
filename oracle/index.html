@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>もちオラクル — 切って、一枚引く</title>
+<meta name="description" content="36枚を実際に切って、一枚引きます。正位置と逆位置で読みが変わります。抽象的な励ましは書きません。今日ありそうな場面を一つ名指しします。">
+<link rel="stylesheet" href="assets/oracle.css?v=20260811-1">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="もちスラ">
+<meta property="og:title" content="もちオラクル — もちスラ">
+<meta property="og:description" content="36枚を切って、一枚引きます。正位置と逆位置で読みが変わります。">
+<meta property="og:image" content="https://mochisura-lab.com/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:url" content="https://mochisura-lab.com/oracle/">
+<link rel="canonical" href="https://mochisura-lab.com/oracle/">
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a href="../index.html">← もちスラ</a>
+    <a href="../slime/index.html">スライム診断</a>
+  </nav>
+
+  <header class="top">
+    <p class="kicker">MOCHI ORACLE</p>
+    <h1>もちオラクル</h1>
+    <p>36枚を切って、一枚引きます。正位置と逆位置で読みが変わります。</p>
+  </header>
+
+  <div class="legend">
+    <span><b>○ 景</b>いまの季節　12枚</span>
+    <span><b>♡ 心</b>内側の気持ち　12枚</span>
+    <span><b>✦ 導</b>次の行動　12枚</span>
+  </div>
+
+  <section class="table">
+    <div class="stage">
+      <div class="deck" id="deck" aria-hidden="true"></div>
+      <article class="drawn" id="drawn" aria-live="polite">
+        <div class="face back">🍑</div>
+        <div class="face front"><img src="" alt=""></div>
+        <span class="rev-flag"></span>
+      </article>
+    </div>
+
+    <div class="controls">
+      <div class="spread" role="group" aria-label="引き方">
+        <button type="button" class="on" data-n="1">一枚引き<br><small>いま必要な言葉</small></button>
+        <button type="button" data-n="3">三枚引き<br><small>いま・心・次の一歩</small></button>
+      </div>
+      <div class="qrow">
+        <input id="question" type="text" maxlength="80" placeholder="気になっていること（書かなくても引けます）" aria-label="気になっていること">
+      </div>
+      <div class="acts">
+        <button type="button" id="shuffle">切る</button>
+        <button type="button" id="draw" class="primary">一枚引く</button>
+      </div>
+      <p class="status" id="status">深呼吸して、好きなタイミングでどうぞ。</p>
+    </div>
+  </section>
+
+  <div class="reading" id="reading"></div>
+
+  <section class="section">
+    <h2>36枚</h2>
+    <p class="lead">絵を押すと、正位置と逆位置の両方が読めます。</p>
+    <div class="filters" role="group" aria-label="系統でしぼる">
+      <button type="button" class="on" data-f="all">すべて</button>
+      <button type="button" data-f="scene">景</button>
+      <button type="button" data-f="heart">心</button>
+      <button type="button" data-f="guide">導</button>
+    </div>
+    <div class="grid" id="gallery"></div>
+  </section>
+
+  <section class="section">
+    <h2>最近引いたカード</h2>
+    <p class="lead">この端末の中だけに残ります。<button type="button" id="clearHistory" style="background:none;border:0;color:var(--o-gold);cursor:pointer;font:inherit;padding:0">消す</button></p>
+    <div id="history"></div>
+  </section>
+
+  <footer class="foot">
+    <p>
+      引くたびに36枚を切り直しています。正位置と逆位置は、引くたびに決め直しています。
+      逆位置は悪い意味ではありません。同じ力が内へ向いているか、出すぎているか、まだ足りないか、のどれかです。
+    </p>
+    <p>
+      占いは、自分を眺めるための道具です。書いてあることが当たっていないと感じたら、そちらが正しいと思ってください。
+    </p>
+    <p><a href="../index.html">ほかの診断を見る</a></p>
+  </footer>
+
+</div>
+
+<script src="assets/cards.js?v=20260811-1"></script>
+<script src="assets/app.js?v=20260811-1" defer></script>
+</body>
+</html>
