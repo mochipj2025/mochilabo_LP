@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>相性を読む — 行きと帰りで、名前が変わる</title>
 <meta name="description" content="生年月日を二つ入れるだけ。相手があなたに与える作用と、あなたが相手に与える作用は同じではありません。点数はつけません。">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="../assets/galaxy.css?v=20260810-sync1">
+<link rel="stylesheet" href="assets/style.css?v=20260811-contrast1">
+<link rel="stylesheet" href="../assets/galaxy.css?v=20260811-frame1">
 <script src="../assets/galaxy.js?v=20260810-sync1" defer></script>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
@@ -24,6 +24,10 @@
 </head>
 <body>
 <div class="wrap">
+
+  <nav class="site-nav" aria-label="ページ移動">
+    <a href="../index.html">← もちスラトップ</a>
+  </nav>
 
   <header class="top">
     <h1>相性を読む</h1>
@@ -92,6 +96,14 @@
       <div id="gogyo-body"></div>
     </section>
 
+    <section class="share">
+      <button type="button" class="card-btn" id="saveCard">画像にして保存</button>
+      <span class="said" id="saved" role="status" aria-live="polite"></span>
+      <p class="note">
+        1080×1350（4:5）のJPEGで保存します。この処理も端末の中だけで、どこにも送っていません。
+      </p>
+    </section>
+
     <details class="fold">
       <summary>使った暦（結果の根拠）</summary>
       <div class="fold-in">
@@ -120,8 +132,10 @@
 <script src="../hoshiyomi/assets/koyomi.js"></script>
 <script src="../hoshiyomi/assets/toyo.js"></script>
 <script src="../assets/store.js?v=20260811-1"></script>
-<script src="assets/aishou.js"></script>
+<script src="assets/aishou.js?v=20260811-name1"></script>
 <script src="assets/text.js"></script>
-<script src="assets/app.js"></script>
+<script src="../assets/card-frame.js?v=20260811-frame1"></script>
+<script src="assets/card.js?v=20260811-frame1"></script>
+<script src="assets/app.js?v=20260811-frame1"></script>
 </body>
 </html>

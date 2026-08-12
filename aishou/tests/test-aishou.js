@@ -36,8 +36,8 @@ console.log('\n[1] 対応表の形');
 console.log('\n[2] 行きと帰りが別物になるか');
 {
   const r = A.read('1990-05-03', '1988-11-12');
-  check('あなたから見た相手', r.aToB.name === '棘', r.aToB.tsuhen + '/' + r.aToB.name);
-  check('相手から見たあなた', r.bToA.name === '恵み雨', r.bToA.tsuhen + '/' + r.bToA.name);
+  check('あなたから見た相手', r.aToB.name === '指摘', r.aToB.tsuhen + '/' + r.aToB.name);
+  check('相手から見たあなた', r.bToA.name === '受け取り', r.bToA.tsuhen + '/' + r.bToA.name);
   check('非対称として立つ', r.asymmetric === true);
 
   // 入れ替えると中身も入れ替わる
@@ -47,10 +47,10 @@ console.log('\n[2] 行きと帰りが別物になるか');
     s.aToB.tsuhen + ' / ' + s.bToA.tsuhen);
   check('距離は入れ替えても同じ', s.distance === r.distance, r.distance + ' / ' + s.distance);
 
-  // 同じ日どうしは必ず比肩＝並び株で対称
+  // 同じ日どうしは必ず比肩＝対等で対称
   const same = A.read('1990-05-03', '1990-05-03');
-  check('同じ生年月日なら並び株どうし',
-    same.aToB.name === '並び株' && same.bToA.name === '並び株' && same.asymmetric === false);
+  check('同じ生年月日なら対等どうし',
+    same.aToB.name === '対等' && same.bToA.name === '対等' && same.asymmetric === false);
   check('同じ生年月日なら距離0', same.distance === 0);
   check('同じ生年月日なら色も同じ', same.gogyo === 'onaji');
 }

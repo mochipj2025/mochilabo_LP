@@ -94,16 +94,16 @@ window.MONEY = (function () {
 
   /* 月柱の通変星。スライム診断と同じ引き方をする。 */
   var STAR = {
-    '比肩': { key: 'narabikabu', name: '並び株' },
-    '劫財': { key: 'karamizuru', name: '絡み蔓' },
-    '食神': { key: 'kaori',      name: '香り' },
-    '傷官': { key: 'toge',       name: '棘' },
-    '偏財': { key: 'nohara',     name: '野原' },
-    '正財': { key: 'une',        name: '畝' },
-    '偏官': { key: 'hasami',     name: '鋏' },
-    '正官': { key: 'shichu',     name: '支柱' },
-    '偏印': { key: 'komorebi',   name: '木漏れ日' },
-    '正印': { key: 'megumiame',  name: '恵み雨' }
+    '比肩': { key: 'narabikabu', name: '対等' },
+    '劫財': { key: 'karamizuru', name: '巻き込み' },
+    '食神': { key: 'kaori',      name: 'ゆるみ' },
+    '傷官': { key: 'toge',       name: '指摘' },
+    '偏財': { key: 'nohara',     name: '出入り' },
+    '正財': { key: 'une',        name: '守り' },
+    '偏官': { key: 'hasami',     name: '追い込み' },
+    '正官': { key: 'shichu',     name: '役割' },
+    '偏印': { key: 'komorebi',   name: 'わき道' },
+    '正印': { key: 'megumiame',  name: '受け取り' }
   };
 
   function starOf(year, month, day) {

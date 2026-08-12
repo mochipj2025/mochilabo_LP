@@ -122,7 +122,13 @@ console.log('\n[6] 入力の扱い');
   const a = S.readDate('1990-05-03'), b = S.read(1990, 5, 3);
   check('readDate と read が一致', a.title === b.title, a.title);
   check('title の形', /^[青赤黄白黒]の、/.test(a.title), a.title);
-  check('image が景と対応', a.image === 'images/' + a.kei.key + '.png', a.image);
+  check('画面のヒーローはドット絵で、景と鉢の色に対応',
+    a.image === 'images_pixel/' + a.kei.key + '-' + a.color.key + '.png', a.image);
+  check('書き出すカードは描き込んだほう',
+    a.imageRich === 'images/' + a.kei.key + '-' + a.color.key + '.png', a.imageRich);
+  check('どちらにも色ぶんが無いときの逃げ道がある',
+    a.imageFallback === 'images_pixel/' + a.kei.key + '.png' &&
+    a.imageRichFallback === 'images/' + a.kei.key + '.png');
 
   const bad = t => { try { S.readDate(t); return false; } catch (e) { return true; } };
   check('形式違いを弾く', bad('1990/5/3'));

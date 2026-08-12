@@ -20,6 +20,9 @@
   var reading = $('#reading');
   var btnShuffle = $('#shuffle');
   var btnDraw = $('#draw');
+  var cardDialog = $('#cardDialog');
+  var cardDialogBody = $('#cardDialogBody');
+  var cardDialogClose = $('#cardDialogClose');
 
   var order = CARDS.map(function (_, i) { return i; });
   var spread = 1;
@@ -110,10 +113,77 @@
     await wait(560);
   }
 
+  function appendReading(target, side, reversed) {
+    target.appendChild(el('p', 'line', side.line));
+    side.body.forEach(function (p) { target.appendChild(el('p', 'body', p)); });
+
+    var act = el('div', 'act');
+    act.appendChild(el('b', null, reversed ? 'ほどく一手' : '今日の一手'));
+    act.appendChild(document.createTextNode(side.act));
+    target.appendChild(act);
+  }
+
+  function renderDialogSide(c, reversed) {
+    var side = reversed ? c.rev : c.up;
+    var box = el('section', 'card-dialog-side');
+    box.appendChild(el('h3', null, reversed ? '逆位置の読み' : '正位置の読み'));
+    appendReading(box, side, reversed);
+    return box;
+  }
+
+  function openCardDialog(c) {
+    cardDialogBody.textContent = '';
+
+    var layout = el('div', 'card-dialog-layout');
+    var visual = el('figure', 'card-dialog-visual');
+    var image = document.createElement('img');
+    image.src = c.art;
+    image.alt = c.title + 'のカード';
+    visual.appendChild(image);
+    visual.appendChild(el('figcaption', null, c.symbol + ' ' + c.suitLabel + '　' + c.serial));
+    layout.appendChild(visual);
+
+    var info = el('div', 'card-dialog-info');
+    info.appendChild(el('span', 'suit ' + c.suit, c.symbol + ' ' + c.suitLabel));
+    var title = el('h2', null, c.title);
+    title.id = 'cardDialogTitle';
+    info.appendChild(title);
+    info.appendChild(el('p', 'card-dialog-meta', c.reading + '　／　' + c.keyword));
+    info.appendChild(renderDialogSide(c, false));
+    info.appendChild(renderDialogSide(c, true));
+    layout.appendChild(info);
+    cardDialogBody.appendChild(layout);
+
+    if (typeof cardDialog.showModal === 'function') cardDialog.showModal();
+    else cardDialog.setAttribute('open', '');
+  }
+
+  function closeCardDialog() {
+    if (typeof cardDialog.close === 'function') cardDialog.close();
+    else cardDialog.removeAttribute('open');
+  }
+
   function renderCard(entry, posLabel) {
     var c = entry.card;
     var side = entry.reversed ? c.rev : c.up;
     var box = el('article', 'rcard');
+
+    if (posLabel) box.appendChild(el('p', 'pos', posLabel));
+
+    var layout = el('div', 'rcard-layout');
+    var visual = el('button', 'rcard-visual');
+    visual.type = 'button';
+    visual.setAttribute('aria-label', c.title + 'のカード説明を見る');
+    var image = document.createElement('img');
+    image.src = c.art;
+    image.alt = c.title + 'のカード（' + (entry.reversed ? '逆位置' : '正位置') + '）';
+    if (entry.reversed) image.className = 'is-reversed';
+    visual.appendChild(image);
+    visual.appendChild(el('span', null, 'カードの説明を見る'));
+    visual.addEventListener('click', function () { openCardDialog(c); });
+    layout.appendChild(visual);
+
+    var copy = el('div', 'rcard-copy');
 
     var head = el('div', 'head');
     head.appendChild(el('span', 'suit ' + c.suit, c.symbol + ' ' + c.suitLabel));
@@ -121,16 +191,10 @@
     h.appendChild(el('small', null, c.reading + '　' + c.keyword));
     head.appendChild(h);
     head.appendChild(el('span', 'ori', entry.reversed ? '逆位置' : '正位置'));
-    box.appendChild(head);
-
-    if (posLabel) box.appendChild(el('p', 'pos', posLabel));
-    box.appendChild(el('p', 'line', side.line));
-    side.body.forEach(function (p) { box.appendChild(el('p', 'body', p)); });
-
-    var act = el('div', 'act');
-    act.appendChild(el('b', null, entry.reversed ? 'ほどく一手' : '今日の一手'));
-    act.appendChild(document.createTextNode(side.act));
-    box.appendChild(act);
+    copy.appendChild(head);
+    appendReading(copy, side, entry.reversed);
+    layout.appendChild(copy);
+    box.appendChild(layout);
     return box;
   }
 
@@ -200,18 +264,16 @@
     grid.textContent = '';
     CARDS.filter(function (c) { return filter === 'all' || c.suit === filter; })
       .forEach(function (c) {
-        var fig = el('figure');
+        var card = el('button', 'gallery-card');
+        card.type = 'button';
+        card.setAttribute('aria-label', c.title + 'の説明を見る');
         var img = document.createElement('img');
         img.src = c.art; img.alt = c.title; img.loading = 'lazy';
-        fig.appendChild(img);
-        fig.appendChild(el('figcaption', null, c.title));
-        fig.addEventListener('click', function () {
-          reading.textContent = '';
-          reading.appendChild(renderCard({ card: c, reversed: false }, '正位置の読み'));
-          reading.appendChild(renderCard({ card: c, reversed: true }, '逆位置の読み'));
-          reading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-        grid.appendChild(fig);
+        card.appendChild(img);
+        card.appendChild(el('span', 'gallery-card-name', c.title));
+        card.appendChild(el('span', 'gallery-card-hint', '説明を見る'));
+        card.addEventListener('click', function () { openCardDialog(c); });
+        grid.appendChild(card);
       });
   }
 
@@ -240,6 +302,11 @@
   $('#clearHistory').addEventListener('click', function () {
     try { localStorage.removeItem(HISTORY_KEY); } catch (e) {}
     renderHistory();
+  });
+
+  cardDialogClose.addEventListener('click', closeCardDialog);
+  cardDialog.addEventListener('click', function (e) {
+    if (e.target === cardDialog) closeCardDialog();
   });
 
   shuffleOrder();

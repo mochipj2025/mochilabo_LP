@@ -2,12 +2,14 @@
 
 :root {
   --bg: #fbf8f3; --panel: #ffffff; --ink: #33291f; --ink-soft: #6d6055;
-  --line: #e4dcd0; --accent: #b5763a; --accent-soft: #fbeee0; --danger: #b3543f;
+  --line: #e4dcd0; --accent: #b5763a;
+  --on-accent: #26170A; --accent-soft: #fbeee0; --danger: #b3543f;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #1c1a18; --panel: #262320; --ink: #ece5dc; --ink-soft: #a89c8f;
-    --line: #3b3630; --accent: #d59a5e; --accent-soft: #332a20; --danger: #d3745c;
+    --line: #3b3630; --accent: #d59a5e;
+    --on-accent: #1C1206; --accent-soft: #332a20; --danger: #d3745c;
   }
 }
 
@@ -54,7 +56,7 @@ button {
   border-radius: 9px; cursor: pointer; border: 1px solid var(--line);
   background: var(--panel); color: var(--ink);
 }
-.go { border: 0; color: #fff; background: var(--accent); }
+.go { border: 0; color: var(--on-accent, #fff); background: var(--accent); }
 .go.small { padding: 12px 15px; }
 .danger { border-color: var(--danger); color: var(--danger); }
 .plain { color: var(--ink-soft); font-weight: 400; font-size: 14px; }

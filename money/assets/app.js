@@ -133,7 +133,10 @@
     table.appendChild(tr);
   }
 
+  var last = null;
+
   function render(r) {
+    last = r;
     var top = r.top, ven = r.venus.domain;
     var map = { '配点': top.name, '金星': ven.name };
 
@@ -220,4 +223,23 @@
       $('result').hidden = true;
     }
   });
+
+  /* 1枚の画像にする。canvas に描いて保存するだけで、どこにも送らない。 */
+  if ($('saveCard')) {
+    $('saveCard').addEventListener('click', function () {
+      if (!window.MONEY_CARD || !last) return;
+      $('saved').textContent = '作っています…';
+      try {
+        var d = $('birthdate') ? $('birthdate').value : '';
+        var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(d || ''));
+        var stamp = m ? m[1] + '.' + (+m[2]) + '.' + (+m[3]) + '生まれ' : '';
+        window.MONEY_CARD.save(last, stamp, function (name) {
+          $('saved').textContent = name + ' を保存しました';
+          setTimeout(function () { $('saved').textContent = ''; }, 4000);
+        });
+      } catch (ex) {
+        $('saved').textContent = '画像にできませんでした。' + (ex.message || '');
+      }
+    });
+  }
 })();

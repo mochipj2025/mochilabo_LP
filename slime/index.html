@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>スライム診断 — 生年月日だけで、素のあなたを読む</title>
 <meta name="description" content="生年月日を入れるだけ。四柱推命の日柱と月柱から、いまどの段階にいるか、何でできているか、人とどう関わるかを読みます。">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="../assets/galaxy.css?v=20260810-sync1">
+<link rel="stylesheet" href="assets/style.css?v=20260811-about2">
+<link rel="stylesheet" href="../assets/galaxy.css?v=20260811-frame1">
 <script src="../assets/galaxy.js?v=20260810-sync1" defer></script>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
@@ -25,10 +25,22 @@
 <body>
 <div class="wrap">
 
+  <nav class="site-nav" aria-label="ページ移動">
+    <a href="../index.html">← もちスラトップ</a>
+  </nav>
+
   <header class="top">
     <h1>スライム診断</h1>
     <p class="sub">生年月日だけで、素のあなたを読みます。</p>
   </header>
+
+  <section class="about">
+    <p class="about-lead">
+      生年月日から四柱推命の<b>日柱</b>と<b>月柱</b>を出して、そこから四つだけ読みます。
+      当てにいく診断ではありません。<b>いまの自分を四つに分けて眺めるための道具</b>です。
+    </p>
+
+  </section>
 
   <section class="panel">
     <form id="form" autocomplete="off">
@@ -42,6 +54,23 @@
     </p>
   </section>
 
+  <section class="about about-more">
+    <h2>何を出しているか</h2>
+
+    <dl class="about-axes">
+      <div><dt>景</dt><dd>いまどの段階にいるか<span>芽・双葉・若木・蕾・満開・実り・色づき・落ち葉・土・風・種・根の十二段。日柱の十二運から出します</span></dd></div>
+      <div><dt>色</dt><dd>何でできているか<span>青・赤・黄・白・黒の五色。日干の五行から出します。鉢の色がこれを担当します</span></dd></div>
+      <div><dt>星</dt><dd>どこへ向くか<span>人と関わるときの癖。十種。月柱の通変星から出します</span></dd></div>
+      <div><dt>ズレ</dt><dd>量と向きが釣り合っているか<span>重なる・持て余す・足りない の三つ。景の強さと星の向きの掛け合わせ</span></dd></div>
+    </dl>
+
+    <p class="about-note">
+      出方は全部で<b>300通り</b>。読む順番は <b>景 → 色 → 星 → ズレ</b> で固定しています。
+      それぞれ「よくあること・そうなる理由・周りからの見え方・試してほしいこと」の四段で出ます。
+      使った暦は結果の下に全部出しているので、なぜそう出たのかは後から確かめられます。
+    </p>
+  </section>
+
   <div id="result" hidden>
 
     <section class="hero">
@@ -52,11 +81,37 @@
 
     <div id="reads"></div>
 
+    <section class="share">
+      <button type="button" class="card-btn" id="saveCard">画像にして保存</button>
+      <span class="copied" id="saved" role="status" aria-live="polite"></span>
+      <p class="note">
+        1080×1350（4:5）のJPEGで保存します。この処理も端末の中だけで、どこにも送っていません。
+      </p>
+    </section>
+
     <details class="fold">
       <summary>使った暦（結果の根拠）</summary>
       <div class="fold-in">
         <p class="lead">東洋の占いは、どの暦を使ったかで結果が変わります。隠さず全部出します。</p>
         <table id="koyomi"></table>
+      </div>
+    </details>
+
+    <details class="fold">
+      <summary>この結果を絵にする</summary>
+      <div class="fold-in">
+        <p class="lead">
+          下の文をコピーして、画像生成に貼ってください。
+          <b>このサイトは何も送信しません。</b>送るのはあなた自身です。
+        </p>
+        <pre class="prompt" id="prompt"></pre>
+        <p class="prompt-act">
+          <button type="button" class="copy" id="copyPrompt">文をコピー</button>
+          <span class="copied" id="copied" role="status" aria-live="polite"></span>
+        </p>
+        <p class="note">
+          出来上がりは正方形です。下3分の1を空けさせてあるので、そこに名前を入れると 4:5 になります。
+        </p>
       </div>
     </details>
 
@@ -85,8 +140,11 @@
 <script src="../hoshiyomi/assets/koyomi.js"></script>
 <script src="../hoshiyomi/assets/toyo.js"></script>
 <script src="../assets/store.js?v=20260811-1"></script>
-<script src="assets/slime.js"></script>
-<script src="assets/text.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/slime.js?v=20260811-pot2"></script>
+<script src="assets/text.js?v=20260811-result1"></script>
+<script src="assets/prompt.js?v=20260811-pot2"></script>
+<script src="../assets/card-frame.js?v=20260811-frame1"></script>
+<script src="assets/card.js?v=20260811-frame1"></script>
+<script src="assets/app.js?v=20260811-pot2"></script>
 </body>
 </html>

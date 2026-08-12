@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>お金の診断 — 思っているものと、払っているもの</title>
 <meta name="description" content="七つの領域に点を配ると、金星の位置と突き合わせてギャップを出します。収入も貯金も家賃も聞きません。金額はあなたが選んだ分の足し算だけで出します。">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="../assets/galaxy.css?v=20260810-sync1">
+<link rel="stylesheet" href="assets/style.css?v=20260811-contrast1">
+<link rel="stylesheet" href="../assets/galaxy.css?v=20260811-frame1">
 <script src="../assets/galaxy.js?v=20260810-sync1" defer></script>
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
@@ -24,6 +24,10 @@
 </head>
 <body>
 <div class="wrap">
+
+  <nav class="site-nav" aria-label="ページ移動">
+    <a href="../index.html">← もちスラトップ</a>
+  </nav>
 
   <header class="top">
     <h1>お金の診断</h1>
@@ -96,6 +100,14 @@
       <p class="note" id="money-note"></p>
     </section>
 
+    <section class="share">
+      <button type="button" class="card-btn" id="saveCard">画像にして保存</button>
+      <span class="said" id="saved" role="status" aria-live="polite"></span>
+      <p class="note">
+        1080×1350（4:5）のJPEGで保存します。この処理も端末の中だけで、どこにも送っていません。
+      </p>
+    </section>
+
     <details class="fold">
       <summary>使った数字（結果の根拠）</summary>
       <div class="fold-in">
@@ -127,8 +139,10 @@
 <script src="../hoshiyomi/assets/koyomi.js"></script>
 <script src="../hoshiyomi/assets/toyo.js"></script>
 <script src="../assets/store.js?v=20260811-1"></script>
-<script src="assets/money.js"></script>
+<script src="assets/money.js?v=20260811-name1"></script>
 <script src="assets/text.js"></script>
-<script src="assets/app.js"></script>
+<script src="../assets/card-frame.js?v=20260811-frame1"></script>
+<script src="assets/card.js?v=20260811-frame1"></script>
+<script src="assets/app.js?v=20260811-frame1"></script>
 </body>
 </html>

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>もちスラ — 星と季節のあいだで育つ、ちいさな相棒</title>
-<meta name="description" content="もちスラと遊び、育て、自分を知る。動くドット絵の庭、十二景の成長、性格・お金・相性・星読みの診断が集まる、もちスラの公式サイト。">
-<link rel="stylesheet" href="assets/site.css?v=20260810-oracle1">
-<link rel="stylesheet" href="assets/galaxy.css?v=20260810-sync1">
+<title>もちスラ — 生年月日ひとつで読む、五つの診断とカード36枚</title>
+<meta name="description" content="生年月日ひとつで読む、五つの診断と36枚のオラクル。性格・お金・相性・星読み。点数はつけず、使った暦も隠しません。入力はこの画面から出ません。">
+<link rel="stylesheet" href="assets/site.css?v=20260811-contrast1">
+<link rel="stylesheet" href="assets/galaxy.css?v=20260811-frame1">
 <script src="assets/galaxy.js?v=20260810-sync1" defer></script>
 <script src="assets/site-motion.js?v=20260810-grow1" defer></script>
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -17,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="もちスラ">
 <meta property="og:title" content="もちスラ">
-<meta property="og:description" content="生年月日ひとつで読む、五つの診断とオラクル。西洋のホロスコープと東洋の四つを、同じ計算で読み分けます。">
+<meta property="og:description" content="生年月日ひとつで読む、五つの診断と、オラクルカード「もちくる」36枚。点数はつけず、使った暦も隠しません。">
 <meta property="og:image" content="https://www.mochisura-lab.com/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="https://www.mochisura-lab.com/">
@@ -53,11 +53,11 @@
     <div class="hero-copy">
       <p class="hero-kicker">MOCHISURA</p>
       <h1>もちスラ</h1>
-      <p class="hero-lead">星と季節のあいだで育つ、<br class="mobile-break">ちいさくて不思議な相棒。</p>
+      <p class="hero-lead">星と暦から、<br class="mobile-break">自分の輪郭を読む。</p>
       <p class="sub">生年月日をひとつ入れるだけ。ときどき自分のことも見つめてみる。</p>
       <div class="hero-actions">
         <a class="hero-action primary" href="#diagnosis">もちスラと診断する</a>
-        <a class="hero-action secondary" href="oracle/index.html">カードを一枚引く</a>
+        <a class="hero-action secondary" href="oracle/index.html">もちくるを引く</a>
       </div>
     </div>
     <div class="pixel-world" id="pixelWorld" aria-label="もちスラたちが暮らす小さな庭">
@@ -84,7 +84,7 @@
         <span class="pet-sprite" id="petSprite" aria-hidden="true"></span>
       </button>
 
-      <button class="pot-actor" id="potActor" type="button" aria-label="鉢植えもちスラを育てる">
+      <button class="pot-actor" id="potActor" type="button" aria-label="鉢植えもちスラをつつく">
         <img id="potSlime" src="slime/images_pixel/me.png" alt="芽が生えた鉢植えもちスラ">
       </button>
 
@@ -95,10 +95,10 @@
   <section class="world-intro home-section" aria-labelledby="world-title">
     <p class="section-kicker">LIVE WITH MOCHISURA</p>
     <h2 id="world-title">もちスラと暮らしながら、<br>自分のことを少しずつ知る。</h2>
-    <p class="section-copy">もちスラは、芽を出し、花を咲かせ、風に飛ばされ、また根を張ります。その変化を眺めながら、星と暦を使って自分の輪郭も読んでいく場所です。</p>
+    <p class="section-copy">芽を出し、花を咲かせ、風に飛ばされ、また根を張る。もちスラの十二の姿を借りて、星と暦から自分の輪郭を読んでいく場所です。聞くのは生年月日だけ、入力はこの画面から出ません。</p>
     <div class="world-points">
       <div><span class="point-mark play" aria-hidden="true"></span><b>遊ぶ</b><small>庭を歩くPetに触れる</small></div>
-      <div><span class="point-mark grow" aria-hidden="true"></span><b>育てる</b><small>十二景の変化を集める</small></div>
+      <div><span class="point-mark grow" aria-hidden="true"></span><b>引く</b><small>36枚から一枚めくる</small></div>
       <div><span class="point-mark read" aria-hidden="true"></span><b>知る</b><small>診断と星読みで自分を見る</small></div>
     </div>
   </section>
@@ -162,10 +162,10 @@
   <section class="home-section grow-section" id="oracle" aria-labelledby="oracle-title">
     <div class="section-head">
       <div>
-        <p class="section-kicker">ORACLE</p>
-        <h2 id="oracle-title">一枚引く</h2>
+        <p class="section-kicker">MOCHIKURU</p>
+        <h2 id="oracle-title">もちくるを繰る</h2>
       </div>
-      <p>今日のぶんだけ、めくる。</p>
+      <p>繰ると、来る。</p>
     </div>
     <div class="grow-grid">
       <a class="grow-card oracle-entry" href="oracle/index.html">
@@ -175,10 +175,10 @@
           <span class="oracle-mini-card"><img src="slime/images_pixel/kaze.png" alt=""></span>
         </div>
         <div class="grow-body">
-          <span class="status-chip oracle">一枚引き</span>
-          <h3>もちオラクル</h3>
-          <p>心にひとつ問いかけて、十二景からカードを一枚。いま必要な言葉と、小さな行動を受け取ります。</p>
-          <span class="grow-link">カードを引く →</span>
+          <span class="status-chip oracle">36枚・正逆あり</span>
+          <h3>もちくる</h3>
+          <p>景・心・導の36枚を、その場で切って一枚引きます。正位置と逆位置で読みが変わります。抽象的な励ましは書きません。</p>
+          <span class="grow-link">カードを切る →</span>
         </div>
       </a>
     </div>
@@ -207,7 +207,7 @@
 
   <footer class="foot">
     <div class="footer-brand"><span class="brand-orb" aria-hidden="true"></span><b>もちスラ</b></div>
-    <p>星と季節のあいだで育つ、ちいさな相棒。</p>
+    <p>星と暦から、自分の輪郭を読む。</p>
     <p>
       天体の位置は astronomy-engine（MIT License, Don Cross）で計算しています。
       東洋の節気は太陽黄経が15度の倍数になる瞬間を直接求めており、節入り表は使っていません。

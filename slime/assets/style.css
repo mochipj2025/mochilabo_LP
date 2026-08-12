@@ -36,6 +36,10 @@ body {
 
 .wrap { max-width: 680px; margin: 0 auto; padding: 32px 18px 64px; }
 
+.site-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 22px; font-size: 13.5px; }
+.site-nav a { color: var(--ink-soft); text-decoration: none; padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); }
+.site-nav a:hover { color: var(--ink); border-color: var(--accent); }
+
 .top { text-align: center; margin-bottom: 28px; }
 .top h1 { font-size: 27px; margin: 0 0 6px; letter-spacing: .06em; }
 .top .sub { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
@@ -68,7 +72,7 @@ input[type="date"] {
   font-size: 16.5px;
   font-family: inherit;
   font-weight: 600;
-  color: #fff;
+  color: var(--on-accent, #fff);
   background: var(--accent);
   border: 0;
   border-radius: 9px;
@@ -81,27 +85,68 @@ input[type="date"] {
 
 /* ---- 結果 ---- */
 
-.hero { text-align: center; margin: 8px 0 26px; }
-.hero img { width: 240px; max-width: 62%; height: auto; display: block; margin: 0 auto; }
+.hero { text-align: center; margin: 12px 0 34px; }
+.hero img {
+  width: 240px; max-width: 62%; height: auto; display: block; margin: 0 auto;
+  /* ドット絵なので、縮めるときに滑らかにしない */
+  image-rendering: pixelated;
+}
 .hero .title {
   font-size: 26px; font-weight: 600; letter-spacing: .07em;
   margin: 6px 0 4px;
 }
-.hero .stamp { margin: 0; color: var(--ink-soft); font-size: 13px; }
+.hero .stamp { margin: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
 
-.read { margin-bottom: 22px; }
+.read {
+  margin-bottom: 26px;
+  padding: 28px 26px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(51, 41, 31, .045);
+}
 .read h2 {
-  font-size: 19px; margin: 0 0 2px;
-  display: flex; align-items: baseline; gap: 10px;
+  font-size: 21px; margin: 0 0 7px;
+  display: flex; align-items: center; gap: 11px;
 }
 .read h2 .tag {
-  font-size: 11.5px; font-weight: 600; letter-spacing: .1em;
+  flex: 0 0 auto;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .08em;
   color: var(--accent); background: var(--accent-soft);
-  border-radius: 5px; padding: 3px 8px;
+  border-radius: 999px; padding: 4px 10px;
 }
-.read .lead { margin: 0 0 12px; color: var(--ink-soft); font-size: 13px; }
-.read p { margin: 0 0 14px; }
-.read p:last-child { margin-bottom: 0; }
+.read .lead {
+  margin: 0 0 24px;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.read-item { margin: 0 0 24px; }
+.read-item h3 {
+  margin: 0 0 7px;
+  color: var(--accent);
+  font-size: 12.5px;
+  line-height: 1.5;
+  letter-spacing: .06em;
+}
+.read-item p { margin: 0; font-size: 16px; line-height: 2; }
+.read-item.advice {
+  margin: 28px 0 0;
+  padding: 18px 19px;
+  background: var(--accent-soft);
+  border-radius: 11px;
+}
+.read-item.advice h3 { margin-bottom: 8px; }
+
+@media (max-width: 520px) {
+  .read { padding: 23px 19px; }
+  .read h2 { font-size: 19px; align-items: flex-start; }
+  .read-item { margin-bottom: 22px; }
+  .read-item p { font-size: 15.5px; line-height: 1.95; }
+  .read-item.advice { padding: 16px; }
+}
 
 /* ---- 使った暦 ---- */
 
@@ -125,3 +170,47 @@ th { width: 40%; font-weight: 500; color: var(--ink-soft); }
 .foot a { color: var(--accent); }
 .foot .next { margin-top: 16px; font-size: 14px; }
 .foot .next a { display: inline-block; padding: 6px 0; }
+
+/* ---- この結果を絵にする（画像生成の文） ---- */
+
+.prompt {
+  margin: 0; padding: 13px 14px;
+  border: 1px solid var(--line); border-radius: 9px;
+  background: var(--accent-soft);
+  font-family: inherit; font-size: 13px; line-height: 1.85;
+  white-space: pre-wrap; word-break: break-word;
+  color: var(--ink); max-height: 300px; overflow-y: auto;
+}
+.prompt-act { display: flex; align-items: center; gap: 12px; margin: 12px 0 0; }
+.copy {
+  font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+  padding: 9px 20px; border-radius: 9px;
+  border: 1px solid var(--accent); background: transparent; color: var(--accent);
+}
+.copy:hover { background: var(--accent); color: var(--on-accent, #fff); }
+.copied { font-size: 12.5px; color: var(--ink-soft); }
+
+/* ---- どんな診断か ---- */
+
+.about { margin: 0 0 26px; }
+.about-more { margin: 30px 0 0; }
+.about-more h2 { margin: 0 0 14px; font-size: 15px; font-weight: 600; letter-spacing: .06em;
+  color: var(--ink-soft); }
+.about-lead { margin: 0 0 18px; font-size: 15px; line-height: 1.95; }
+.about-lead b { font-weight: 600; }
+
+.about-axes { margin: 0 0 16px; display: grid; gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.about-axes > div { display: grid; grid-template-columns: 84px 1fr; gap: 0 14px;
+  background: var(--panel); padding: 13px 16px; align-items: baseline; }
+.about-axes dt { font-size: 17px; font-weight: 600; color: var(--accent); margin: 0; }
+.about-axes dd { margin: 0; font-size: 15px; line-height: 1.7; }
+.about-axes dd span { display: block; margin-top: 3px; font-size: 12.5px;
+  color: var(--ink-soft); line-height: 1.7; }
+
+.about-note { margin: 0; font-size: 13px; color: var(--ink-soft); line-height: 1.85; }
+.about-note b { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 480px) {
+  .about-axes > div { grid-template-columns: 62px 1fr; gap: 0 10px; padding: 11px 13px; }
+}

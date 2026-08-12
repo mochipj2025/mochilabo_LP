@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>もちオラクル — 切って、一枚引く</title>
-<meta name="description" content="36枚を実際に切って、一枚引きます。正位置と逆位置で読みが変わります。抽象的な励ましは書きません。今日ありそうな場面を一つ名指しします。">
-<link rel="stylesheet" href="assets/oracle.css?v=20260811-1">
+<title>もちくる — 繰ると、来る。</title>
+<meta name="description" content="もちスラのオラクルカード「もちくる」。36枚を実際に切って、一枚引きます。正位置と逆位置で読みが変わります。抽象的な励ましは書きません。今日ありそうな場面を一つ名指しします。">
+<link rel="preload" as="image" href="assets/oracle-cover-concept-v1.png">
+<link rel="stylesheet" href="assets/oracle.css?v=20260811-modal1">
 <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
@@ -13,8 +14,8 @@
 <meta name="theme-color" content="#1c1a18" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="もちスラ">
-<meta property="og:title" content="もちオラクル — もちスラ">
-<meta property="og:description" content="36枚を切って、一枚引きます。正位置と逆位置で読みが変わります。">
+<meta property="og:title" content="もちくる — 繰ると、来る。">
+<meta property="og:description" content="もちスラのオラクルカード「もちくる」。36枚を切って、一枚引きます。正位置と逆位置で読みが変わります。">
 <meta property="og:image" content="https://www.mochisura-lab.com/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:url" content="https://www.mochisura-lab.com/oracle/">
@@ -29,9 +30,9 @@
   </nav>
 
   <header class="top">
-    <p class="kicker">MOCHI ORACLE</p>
-    <h1>もちオラクル</h1>
-    <p>36枚を切って、一枚引きます。正位置と逆位置で読みが変わります。</p>
+    <p class="kicker">MOCHIKURU</p>
+    <h1>もちくる</h1>
+    <p>繰ると、来る。景・心・導の36枚を切って、一枚引きます。正位置と逆位置で読みが変わります。</p>
   </header>
 
   <div class="legend">
@@ -44,7 +45,7 @@
     <div class="stage">
       <div class="deck" id="deck" aria-hidden="true"></div>
       <article class="drawn" id="drawn" aria-live="polite">
-        <div class="face back">🍑</div>
+        <div class="face back" aria-label="カードの裏面"></div>
         <div class="face front"><img src="" alt=""></div>
         <span class="rev-flag"></span>
       </article>
@@ -70,7 +71,7 @@
 
   <section class="section">
     <h2>36枚</h2>
-    <p class="lead">絵を押すと、正位置と逆位置の両方が読めます。</p>
+    <p class="lead">カードをタップすると、絵と正位置・逆位置の説明がウィンドウで開きます。</p>
     <div class="filters" role="group" aria-label="系統でしぼる">
       <button type="button" class="on" data-f="all">すべて</button>
       <button type="button" data-f="scene">景</button>
@@ -99,7 +100,14 @@
 
 </div>
 
+<dialog class="card-dialog" id="cardDialog" aria-labelledby="cardDialogTitle">
+  <div class="card-dialog-shell">
+    <button type="button" class="card-dialog-close" id="cardDialogClose" aria-label="説明を閉じる">× <span>閉じる</span></button>
+    <div id="cardDialogBody"></div>
+  </div>
+</dialog>
+
 <script src="assets/cards.js?v=20260811-1"></script>
-<script src="assets/app.js?v=20260811-1" defer></script>
+<script src="assets/app.js?v=20260811-contrast1" defer></script>
 </body>
 </html>

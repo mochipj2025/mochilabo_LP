@@ -11,3 +11,6 @@ oracle/assets/oracle-style-master-v2-peach.png
 # 一時ファイル
 *.log
 codex_*.txt
+
+# 検算用の並べ画像。手元で作って捨てるだけ。
+slime/tools/_*.png

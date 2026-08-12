@@ -53,6 +53,10 @@ body {
 
 .wrap { max-width: 760px; margin: 0 auto; padding: 0 18px 96px; }
 
+.site-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 22px; padding-top: 24px; font-size: 13.5px; }
+.site-nav a { color: var(--ink-soft); text-decoration: none; padding: 7px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); }
+.site-nav a:hover { color: var(--ink); border-color: var(--accent); }
+
 /* ---------- ヘッダ ---------- */
 header.top { padding: 44px 0 8px; }
 header.top h1 {
@@ -121,7 +125,7 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1p
 
 button.go {
   width: 100%; margin-top: 8px; padding: 15px; font: inherit; font-size: 16.5px; font-weight: 700;
-  letter-spacing: .08em; color: #fff; background: var(--accent);
+  letter-spacing: .08em; color: var(--on-accent, #fff); background: var(--accent);
   border: 0; border-radius: 10px; cursor: pointer;
 }
 button.go:hover { filter: brightness(1.12); }
@@ -201,7 +205,7 @@ ul.asp li:last-child { border-bottom: 0; }
 }
 .tag.hard { background: var(--warm-soft); color: var(--hard); }
 .tag.soft { background: var(--accent-soft); color: var(--soft); }
-.tag.strong { background: var(--accent); color: #fff; }
+.tag.strong { background: var(--accent); color: var(--on-accent, #fff); }
 ul.asp .pair { font-weight: 600; flex: none; }
 ul.asp .mean { color: var(--ink-soft); font-size: 13.5px; flex: 1 1 100%; }
 ul.asp .orb { font-size: 12px; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
@@ -222,7 +226,7 @@ ul.asp .orb { font-size: 12px; color: var(--ink-faint); font-variant-numeric: ta
   background: var(--bg); color: var(--ink); cursor: pointer;
 }
 .themebtn:hover { border-color: var(--accent); }
-.themebtn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.themebtn.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent, #fff); }
 
 .thbox {
   border: 1px solid var(--line); border-radius: 11px;
@@ -284,7 +288,7 @@ dl.gloss dd { margin: 0; color: var(--ink-soft); }
   background: transparent; color: var(--ink-soft);
 }
 .tonebtn:hover { color: var(--ink); }
-.tonebtn.on { background: var(--accent); color: #fff; }
+.tonebtn.on { background: var(--accent); color: var(--on-accent, #fff); }
 .tonebtn.on[data-tone="spicy"] { background: var(--hard); }
 .tonebtn.on[data-tone="gag"] { background: var(--warm); }
 .tonenote {
@@ -422,7 +426,7 @@ details.fold > summary:hover { color: var(--accent); }
   background: var(--bg); color: var(--ink);
 }
 .signbtn:hover { border-color: var(--accent); }
-.signbtn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.signbtn.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent, #fff); }
 .sign-mascot-thumb {
   display: block; width: 74px; height: 74px; margin-bottom: 2px;
   object-fit: contain; pointer-events: none;
@@ -477,7 +481,7 @@ details.fold > summary:hover { color: var(--accent); }
 
 a.biglink {
   display: inline-block; padding: 13px 22px; border-radius: 10px;
-  background: var(--accent); color: #fff; text-decoration: none;
+  background: var(--accent); color: var(--on-accent, #fff); text-decoration: none;
   font-weight: 700; font-size: 15px; letter-spacing: .05em;
 }
 a.biglink:hover { filter: brightness(1.12); }

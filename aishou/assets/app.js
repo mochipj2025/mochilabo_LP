@@ -83,6 +83,14 @@
     aite_kokusu:    '相手があなたを抑えます'
   };
 
+  var last = null;
+
+  /* 入力の 'YYYY-MM-DD' を、カードに載せる形に直す。 */
+  function fmtDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso || ''));
+    return m ? m[1] + '.' + (+m[2]) + '.' + (+m[3]) : '';
+  }
+
   function render(r) {
     /* 二人 */
     $('img-a').src = '../slime/images/' + r.a.kei.key + '.png';
@@ -129,6 +137,8 @@
     kr('景の距離', '輪の上で ' + r.distance + '（0〜6）');
     kr('五行の関係', r.a.elem + ' と ' + r.b.elem + ' → ' + GOGYO_TITLE[r.gogyo]);
 
+    last = { r: r, a: fmtDate($('d1').value), b: fmtDate($('d2').value) };
+
     $('result').hidden = false;
   }
 
@@ -167,4 +177,20 @@
       $('result').hidden = true;
     }
   });
+
+  /* 1枚の画像にする。canvas に描いて保存するだけで、どこにも送らない。 */
+  if ($('saveCard')) {
+    $('saveCard').addEventListener('click', function () {
+      if (!window.AISHOU_CARD || !last) return;
+      $('saved').textContent = '作っています…';
+      try {
+        window.AISHOU_CARD.save(last.r, last.a, last.b, function (name) {
+          $('saved').textContent = name + ' を保存しました';
+          setTimeout(function () { $('saved').textContent = ''; }, 4000);
+        });
+      } catch (ex) {
+        $('saved').textContent = '画像にできませんでした。' + (ex.message || '');
+      }
+    });
+  }
 })();

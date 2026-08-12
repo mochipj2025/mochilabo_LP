@@ -827,7 +827,7 @@ html { scroll-behavior: smooth; }
   line-height: 1.08;
   letter-spacing: .12em;
   text-indent: .12em;
-  color: #fff;
+  color: var(--on-accent, #fff);
   text-shadow: 0 0 28px rgba(169,188,255,.28), 0 3px 18px rgba(0,0,20,.35);
 }
 .hero-kicker {

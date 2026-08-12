@@ -42,16 +42,16 @@ window.SLIME = (function () {
 
   /* 通変星 → 星。集める＝自分を強める側、削る＝自分から出ていく側。 */
   var STAR = {
-    '比肩': { key: 'narabikabu', name: '並び株',   side: '集める' },
-    '劫財': { key: 'karamizuru', name: '絡み蔓',   side: '集める' },
-    '偏印': { key: 'komorebi',   name: '木漏れ日', side: '集める' },
-    '正印': { key: 'megumiame',  name: '恵み雨',   side: '集める' },
-    '食神': { key: 'kaori',      name: '香り',     side: '削る' },
-    '傷官': { key: 'toge',       name: '棘',       side: '削る' },
-    '偏財': { key: 'nohara',     name: '野原',     side: '削る' },
-    '正財': { key: 'une',        name: '畝',       side: '削る' },
-    '偏官': { key: 'hasami',     name: '鋏',       side: '削る' },
-    '正官': { key: 'shichu',     name: '支柱',     side: '削る' }
+    '比肩': { key: 'narabikabu', name: '対等',   side: '集める' },
+    '劫財': { key: 'karamizuru', name: '巻き込み',   side: '集める' },
+    '偏印': { key: 'komorebi',   name: 'わき道', side: '集める' },
+    '正印': { key: 'megumiame',  name: '受け取り',   side: '集める' },
+    '食神': { key: 'kaori',      name: 'ゆるみ',     side: '削る' },
+    '傷官': { key: 'toge',       name: '指摘',       side: '削る' },
+    '偏財': { key: 'nohara',     name: '出入り',     side: '削る' },
+    '正財': { key: 'une',        name: '守り',       side: '削る' },
+    '偏官': { key: 'hasami',     name: '追い込み',       side: '削る' },
+    '正官': { key: 'shichu',     name: '役割',     side: '削る' }
   };
 
   /* ズレ。量（景の強さ）と向き（星）が釣り合っているか。 */
@@ -98,7 +98,12 @@ window.SLIME = (function () {
       zureName: ZURE_NAME[zure],
       /* 名乗り。「青の、蕾」 */
       title: color.name + 'の、' + kei.name,
-      image: 'images/' + kei.key + '.png',
+      /* 画面のヒーローはドット絵、書き出すカードは描き込んだほう。
+         鉢の色ぶんが無ければ、色なしの絵に落とす。 */
+      image:             'images_pixel/' + kei.key + '-' + color.key + '.png',
+      imageFallback:     'images_pixel/' + kei.key + '.png',
+      imageRich:         'images/' + kei.key + '-' + color.key + '.png',
+      imageRichFallback: 'images/' + kei.key + '.png',
       /* 使った暦。隠さずに全部返す。 */
       koyomi: {
         dayGanshi: dayPillar.ganshi,
