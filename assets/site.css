@@ -1080,3 +1080,71 @@ html { scroll-behavior: smooth; }
   .world-intro { padding: 25px 20px; }
   .grow-body { padding-inline: 18px; }
 }
+
+/* ---- リンクカードの浮遊 ----------------------------------------------
+   文字は動かさない。動くのは絵と、その下の影だけ。
+   4枚それぞれ周期と位相をずらして、揃って揺れないようにしている。
+   全体を止めるのは冒頭の prefers-reduced-motion に任せる。 */
+
+.card .thumb { position: relative; }
+
+/* 地面の影。絵が上がると小さく薄く、下りると大きく濃くなる */
+.card .thumb::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 4px;
+  width: 46%; height: 7px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 26%, transparent);
+  filter: blur(3.5px);
+  animation: card-shadow var(--float-dur, 6s) ease-in-out var(--float-delay, 0s) infinite;
+  pointer-events: none;
+}
+
+.card .thumb img {
+  position: relative;
+  z-index: 1;
+  animation: card-lift var(--float-dur, 6s) ease-in-out var(--float-delay, 0s) infinite;
+}
+
+@keyframes card-lift {
+  0%, 100% { translate: 0 0; }
+  50%      { translate: 0 -6px; }
+}
+@keyframes card-shadow {
+  0%, 100% { scale: 1;    opacity: .34; }
+  50%      { scale: .74;  opacity: .16; }
+}
+
+/* 揃って揺れると機械に見える。素数寄りの周期でずらす */
+.card:nth-of-type(1) { --float-dur: 5.6s; --float-delay: -0.4s; }
+.card:nth-of-type(2) { --float-dur: 6.7s; --float-delay: -2.1s; }
+.card:nth-of-type(3) { --float-dur: 6.1s; --float-delay: -3.3s; }
+.card:nth-of-type(4) { --float-dur: 7.3s; --float-delay: -1.2s; }
+
+/* 触れているあいだは、浮きを止めて持ち上げたまま見せる */
+.card:hover .thumb img,
+.card:focus-visible .thumb img {
+  animation-play-state: paused;
+  translate: 0 -9px;
+  transition: translate .24s ease;
+}
+.card:hover .thumb::after,
+.card:focus-visible .thumb::after {
+  animation-play-state: paused;
+  scale: .66;
+  opacity: .12;
+  transition: scale .24s ease, opacity .24s ease;
+}
+
+/* もちくるのカードは絵が3枚重なっているので、まとめて1つとして浮かせる */
+.oracle-entry .oracle-entry-visual {
+  animation: card-lift 6.4s ease-in-out -1.8s infinite;
+}
+.oracle-entry:hover .oracle-entry-visual,
+.oracle-entry:focus-visible .oracle-entry-visual {
+  animation-play-state: paused;
+  translate: 0 -9px;
+  transition: translate .24s ease;
+}

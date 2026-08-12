@@ -1,4 +1,4 @@
-// スライム診断の検算。
+// 十二景診断の検算。
 // 計算そのものは hoshiyomi 側で検算済みなので、ここは対応表が正しいかだけを見る。
 const fs = require('fs');
 const path = require('path');

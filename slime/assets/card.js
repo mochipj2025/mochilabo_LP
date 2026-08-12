@@ -1,4 +1,4 @@
-/* スライム診断 — 結果を1枚の画像にする
+/* 十二景診断 — 結果を1枚の画像にする
  *
  * 枠（地・帯・書き出し）は ../assets/card-frame.js が持つ。
  * ここは「上の正方形に何を描くか」だけ。
@@ -17,7 +17,7 @@ window.SLIME_CARD = (function () {
       lines: ['行動 ' + r.kei.name + '　考え方 ' + r.color.name +
               '　対人 ' + r.star.name + '　バランス ' + r.zureName],
       note: '300通りのうちのひとつ' + (stampText ? '　／　' + stampText : ''),
-      right: 'スライム診断　mochisura-lab.com',
+      right: '十二景診断　mochisura-lab.com',
       filename: 'mochisura-' + r.color.key + '-' + r.kei.key + '-' + r.star.key,
       paint: function (ctx, W, SQ, done) {
         F.loadImage(r.imageRich || r.image, r.imageRichFallback, function (img) {

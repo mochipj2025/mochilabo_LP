@@ -92,7 +92,7 @@ window.MONEY = (function () {
     return out;
   }
 
-  /* 月柱の通変星。スライム診断と同じ引き方をする。 */
+  /* 月柱の通変星。十二景診断と同じ引き方をする。 */
   var STAR = {
     '比肩': { key: 'narabikabu', name: '対等' },
     '劫財': { key: 'karamizuru', name: '巻き込み' },
