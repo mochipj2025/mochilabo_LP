@@ -160,6 +160,7 @@
     last.appendChild(el('p', 'y-closing', AT.CLOSING));
     box.appendChild(last);
 
+    box.classList.add('on');
     box.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
