@@ -11,15 +11,21 @@ window.MOCHI_DOB = (function () {
   'use strict';
 
   var CSS = [
-    '.dob{display:flex;gap:7px;align-items:stretch;flex-wrap:wrap}',
-    '.dob-f{display:flex;align-items:center;gap:4px;flex:0 1 auto;min-width:0}',
+    /* 折り返さない。狭い枠（星読みの相性ページは273px）でも1行に収める */
+    '.dob{display:flex;gap:6px;align-items:stretch;flex-wrap:nowrap;width:100%}',
+    '.dob-f{display:flex;align-items:center;gap:3px;min-width:0}',
+    /* 年は4桁ぶんで足りる。余りは月と日に配って、押しやすい幅を確保する */
+    '.dob-f:first-child{flex:0 1 6.4em}',
+    '.dob-f:not(:first-child){flex:1 1 0}',
     '.dob-f > i{font-style:normal;font-size:13px;color:var(--ink-soft,#777);flex:0 0 auto}',
     '.dob input,.dob select{',
     '  font:inherit;font-size:17px;color:var(--ink,#222);background:var(--bg,#fff);',
-    '  border:1px solid var(--line,#ccc);border-radius:9px;padding:12px 10px;min-width:0;',
-    '  font-variant-numeric:tabular-nums}',
-    '.dob .dob-y{width:5.5em;text-align:center}',
-    '.dob select{padding-right:6px}',
+    '  border:1px solid var(--line,#ccc);border-radius:9px;padding:12px 8px;',
+    '  min-width:0;width:100%;font-variant-numeric:tabular-nums}',
+    '.dob .dob-y{text-align:center}',
+    '.dob select{padding-right:2px;text-align:center}',
+    '@media (max-width:380px){.dob input,.dob select{font-size:16px;padding:12px 4px}',
+    ' .dob-f > i{font-size:12px}}',
     '.dob input:focus,.dob select:focus{outline:2px solid var(--accent,#b5763a);outline-offset:1px}',
     '.dob-note{margin:7px 0 0;font-size:12.5px;color:var(--ink-soft,#777);min-height:1.2em}',
     '.dob-note.is-bad{color:#c0533f}'
@@ -130,7 +136,8 @@ window.MOCHI_DOB = (function () {
       y.value = y.value.replace(/[^\d]/g, '').slice(0, 4);
       fillDays();
       push();
-      if (y.value.length === 4) m.focus();   /* 4桁入ったら月へ送る */
+      /* 4桁で月へ自動で送るのはやめた。Android では select にフォーカスが入ると
+         その場で一覧が開いてしまい、打ち直したいときに画面を奪われる。 */
     });
     m.addEventListener('change', function () { fillDays(); push(); });
     d.addEventListener('change', push);
