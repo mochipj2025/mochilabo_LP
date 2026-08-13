@@ -68,7 +68,7 @@ body {
   position: absolute; inset: 0;
   border-radius: 12px;
   border: 1px solid rgba(217,176,106,.34);
-  background: #241f36 url("oracle-cover-concept-v1.png") center / cover no-repeat;
+  background: #241f36 url("../cards/back.jpg") center / cover no-repeat;
   box-shadow: 0 10px 22px rgba(0,0,0,.42);
   translate: calc(var(--dx, 0) * 1px) calc(var(--n) * -2px + var(--dy, 0) * 1px);
   rotate: calc(var(--dr, 0) * 1deg);
@@ -100,7 +100,7 @@ body {
 }
 .face.back {
   border: 1px solid rgba(217,176,106,.4);
-  background: #241f36 url("oracle-cover-concept-v1.png") center / cover no-repeat;
+  background: #241f36 url("../cards/back.jpg") center / cover no-repeat;
 }
 .face.front { rotate: y 180deg; border: 1px solid rgba(217,176,106,.55); background: #100e18; }
 .face.front img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -114,6 +114,8 @@ body {
   background: rgba(20,18,27,.8); white-space: nowrap; opacity: 0; transition: opacity .3s ease .35s;
 }
 .drawn.is-open .rev-flag { opacity: 1; }
+/* 逆位置はカードだけを回す。札の下の文字は立てたまま置く */
+.drawn.is-reversed .rev-flag { top: -30px; bottom: auto; rotate: 180deg; }
 
 /* ---------- 操作 ---------- */
 

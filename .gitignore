@@ -2,8 +2,10 @@
 _boneyard/
 
 # 作りかけ・作業用。公開する必要がない。
+# ここに置いたものを CSS や HTML から参照しないこと。手元では見えるが本番で404になる。
 slime/wip/
 slime/sheet.png
+# 札の裏の原画（1024px）。配るのは oracle/cards/back.jpg のほう。
 oracle/assets/oracle-cover-concept-v1.png
 oracle/assets/oracle-style-master-v1.png
 oracle/assets/oracle-style-master-v2-peach.png
